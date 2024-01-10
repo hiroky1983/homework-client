@@ -1,8 +1,9 @@
 'use client'
-import { CacheProvider } from '@emotion/react'
-import { ReactNode, useState } from 'react'
 import createCache from '@emotion/cache'
+import { CacheProvider } from '@emotion/react'
 import { useServerInsertedHTML } from 'next/navigation'
+import type { ReactNode} from 'react';
+import { useState } from 'react'
 
 type EmotionCacheProviderProps = {
   children: ReactNode

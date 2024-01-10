@@ -1,6 +1,6 @@
 'use client'
 /** @jsxImportSource @emotion/react */
 
-export const Auth = () => {
+export const AuthScreen = () => {
   return <div>Auth</div>
 }

@@ -1,8 +1,9 @@
 import type Metadata from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import AppProvider from './provider/queryProvider'
-import { EmotionCacheProvider } from './components/emotion-cache-provider'
+
+import { EmotionCacheProvider } from '@/provider/emotion-cache-provider'
+import { AppProvider } from '@/provider/queryProvider'
 
 const inter = Inter({ subsets: ['latin'] })
 
