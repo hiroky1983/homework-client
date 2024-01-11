@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 import useStore from '../store'
 import type { CsrfToken } from '../types'
 

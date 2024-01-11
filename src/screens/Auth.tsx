@@ -1,6 +1,11 @@
 'use client'
-/** @jsxImportSource @emotion/react */
+
+import { Auth } from '@/components/Auth'
 
 export const AuthScreen = () => {
-  return <div>Auth</div>
+  return (
+    <div>
+      <Auth />
+    </div>
+  )
 }

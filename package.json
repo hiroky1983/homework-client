@@ -12,10 +12,6 @@
     "test:ci": "jest --ci"
   },
   "dependencies": {
-    "@emotion/cache": "^11.11.0",
-    "@emotion/css": "^11.11.2",
-    "@emotion/react": "^11.11.3",
-    "@emotion/styled": "^11.11.0",
     "@tanstack/react-query": "^5.17.9",
     "axios": "^1.6.5",
     "next": "14.0.4",
@@ -25,6 +21,7 @@
     "zustand": "^4.4.7"
   },
   "devDependencies": {
+    "@babel/plugin-transform-private-methods": "^7.23.3",
     "@tanstack/eslint-plugin-query": "^5.17.7",
     "@types/node": "^20",
     "@types/react": "^18",
