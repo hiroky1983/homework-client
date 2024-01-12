@@ -5,3 +5,7 @@ export type Credential = {
   email: string
   password: string
 }
+
+export type IsLogin = {
+  isLogin: boolean
+}

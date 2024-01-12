@@ -1,10 +1,10 @@
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 
+import { useRouter } from 'next/navigation'
 import { useError } from './useError'
 import useStore from '@/store'
 import type { Credential } from '@/types'
-import { useRouter } from 'next/navigation'
 
 export const useMutateAuth = () => {
   const router = useRouter()
