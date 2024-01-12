@@ -3,6 +3,7 @@ import type Metadata from 'next'
 import './globals.css'
 
 import { AppProvider } from '@/provider/queryProvider'
+import { useCookie } from '@/hooks/useSetCookie'
 
 // const inter = Inter({ subsets: ['latin'] })
 
@@ -16,6 +17,8 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const { getCsrfToken } = useCookie()
+
   return (
     <html lang="ja">
       <body>
