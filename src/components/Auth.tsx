@@ -5,11 +5,23 @@ import { useForm } from 'react-hook-form'
 import { useMutateAuth } from '@/hooks/useMutateAuth'
 import type { Credential, IsLogin } from '@/types'
 import { useCookie } from '@/hooks/useSetCookie'
+import { useQuery, useQueryClient } from '@tanstack/react-query'
 
 export const Auth = () => {
   const { register, handleSubmit } = useForm<Credential>()
+  const queryClient = useQueryClient()
+  queryClient.setQueryData<IsLogin>(['isLogin'], { isLogin: false })
 
-  const [isLogin, setIsLogin] = useState(true)
+  // const isLogin = useQuery(['isLogin'], {
+  //   initialData: { isLogin: false },
+  //   enabled: false,
+  // }).data
+
+  const isLogin = queryClient.getQueryData<IsLogin>(['isLogin'])
+  const setIsLogin = (isLogin: boolean) => {
+    queryClient.setQueryData<IsLogin>(['isLogin'], { isLogin })
+  }
+  // const [isLogin, setIsLogin] = useState(true)
   const { loginMutation, registerMutation } = useMutateAuth()
   const { getCsrfToken } = useCookie()
 

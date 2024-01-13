@@ -3,12 +3,11 @@ import axios from 'axios'
 
 import { useRouter } from 'next/navigation'
 import { useError } from './useError'
-import useStore from '@/store'
 import type { Credential } from '@/types'
 
 export const useMutateAuth = () => {
   const router = useRouter()
-  const resetEditedTask = useStore((state) => state.resetEditedTask)
+  // const resetEditedTask = useStore((state_) => state.resetEditedTask)
   const { switchErrorHandling } = useError()
   const loginMutation = useMutation({
     mutationFn: async (user: Credential) =>
@@ -39,7 +38,6 @@ export const useMutateAuth = () => {
     mutationFn: async () =>
       await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/logout`),
     onSuccess: () => {
-      resetEditedTask()
       router.push('/')
     },
     onError: (err: any) => {

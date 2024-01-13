@@ -1,17 +1,10 @@
-import axios from 'axios'
 import { useRouter } from 'next/navigation'
-import useStore from '../store'
-import type { CsrfToken } from '../types'
+import { useCookie } from './useSetCookie'
 
 export const useError = () => {
   const router = useRouter()
-  const resetEditedTask = useStore((state) => state.resetEditedTask)
-  const getCsrfToken = async () => {
-    const { data } = await axios.get<CsrfToken>(
-      `${process.env.REACT_APP_API_URL}/csrf`
-    )
-    axios.defaults.headers.common['X-CSRF-TOKEN'] = data.csrf_token
-  }
+
+  const { getCsrfToken } = useCookie()
   const switchErrorHandling = (msg: string) => {
     switch (msg) {
       case 'invalid csrf token':
@@ -20,12 +13,10 @@ export const useError = () => {
         break
       case 'invalid or expired jwt':
         alert('access token expired, please login')
-        resetEditedTask()
         router.push('/')
         break
       case 'missing or malformed jwt':
         alert('access token is not valid, please login')
-        resetEditedTask()
         router.push('/')
         break
       case 'duplicated key not allowed':
@@ -38,6 +29,7 @@ export const useError = () => {
         alert('email is not correct')
         break
       default:
+        getCsrfToken()
         alert(msg)
     }
   }

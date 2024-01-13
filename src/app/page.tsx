@@ -1,4 +1,4 @@
-import { AuthScreen } from '@/screens/Auth'
+import { AuthScreen } from '@/screens/AuthScreen'
 
 export default function Home() {
   return (
