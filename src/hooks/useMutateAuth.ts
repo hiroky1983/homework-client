@@ -7,7 +7,6 @@ import type { Credential } from '@/types'
 
 export const useMutateAuth = () => {
   const router = useRouter()
-  // const resetEditedTask = useStore((state_) => state.resetEditedTask)
   const { switchErrorHandling } = useError()
   const loginMutation = useMutation({
     mutationFn: async (user: Credential) =>
@@ -34,6 +33,19 @@ export const useMutateAuth = () => {
       }
     },
   })
+  const googleLoginMutation = useMutation({
+    mutationFn: async () => {
+      const data = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/google`)
+      router.push(data.data)
+    },
+    onError: (err: any) => {
+      if (err.response.data.message) {
+        switchErrorHandling(err.response.data.message)
+      } else {
+        switchErrorHandling(err.response.data)
+      }
+    },
+  })
   const logoutMutation = useMutation({
     mutationFn: async () =>
       await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/logout`),
@@ -48,5 +60,10 @@ export const useMutateAuth = () => {
       }
     },
   })
-  return { loginMutation, registerMutation, logoutMutation }
+  return {
+    loginMutation,
+    registerMutation,
+    logoutMutation,
+    googleLoginMutation,
+  }
 }

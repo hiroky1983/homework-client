@@ -1,11 +1,11 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import { useQueryClient } from '@tanstack/react-query'
+import React, { useEffect } from 'react'
 import type { SubmitHandler } from 'react-hook-form'
 import { useForm } from 'react-hook-form'
 import { useMutateAuth } from '@/hooks/useMutateAuth'
-import type { Credential, IsLogin } from '@/types'
 import { useCookie } from '@/hooks/useSetCookie'
-import { useQuery, useQueryClient } from '@tanstack/react-query'
+import type { Credential, IsLogin } from '@/types'
 
 export const Auth = () => {
   const { register, handleSubmit } = useForm<Credential>()
@@ -22,12 +22,17 @@ export const Auth = () => {
     queryClient.setQueryData<IsLogin>(['isLogin'], { isLogin })
   }
   // const [isLogin, setIsLogin] = useState(true)
-  const { loginMutation, registerMutation } = useMutateAuth()
+  const { loginMutation, registerMutation, googleLoginMutation } =
+    useMutateAuth()
   const { getCsrfToken } = useCookie()
 
   useEffect(() => {
     getCsrfToken()
   }, [])
+
+  const onClickGoogleLogin = async () => {
+    await googleLoginMutation.mutateAsync()
+  }
 
   const submitAuthHandler: SubmitHandler<Credential> = async (data) => {
     if (isLogin) {
@@ -79,7 +84,7 @@ export const Auth = () => {
         </div>
         <div className="flex justify-center my-2">
           <button
-            className="disabled:opacity-40 py-2 px-4 rounded text-white bg-indigo-600"
+            className="disabled:opacity-40 py-2 px-4 rounded text-white bg-indigo-600 hover:opacity-70"
             type="submit"
           >
             {isLogin ? 'Login' : 'Sign Up'}
@@ -88,9 +93,15 @@ export const Auth = () => {
       </form>
       <div
         onClick={() => setIsLogin(!isLogin)}
-        className="h-6 w-6 my-2 text-blue-500 cursor-pointer"
+        className="my-2 text-blue-500 cursor-pointer p-2 hover:opacity-70"
       >
         change mode
+      </div>
+      <div
+        className="cursor-pointer  text-blue-500 hover:opacity-70"
+        onClick={onClickGoogleLogin}
+      >
+        Google Login
       </div>
     </div>
   )
