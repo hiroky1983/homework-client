@@ -1,27 +1,15 @@
 'use client'
-import { useQueryClient } from '@tanstack/react-query'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import type { SubmitHandler } from 'react-hook-form'
 import { useForm } from 'react-hook-form'
+import { FcGoogle } from 'react-icons/fc'
 import { useMutateAuth } from '@/hooks/useMutateAuth'
 import { useCookie } from '@/hooks/useSetCookie'
-import type { Credential, IsLogin } from '@/types'
+import type { Credential } from '@/types'
 
 export const Auth = () => {
   const { register, handleSubmit } = useForm<Credential>()
-  const queryClient = useQueryClient()
-  queryClient.setQueryData<IsLogin>(['isLogin'], { isLogin: false })
-
-  // const isLogin = useQuery(['isLogin'], {
-  //   initialData: { isLogin: false },
-  //   enabled: false,
-  // }).data
-
-  const isLogin = queryClient.getQueryData<IsLogin>(['isLogin'])
-  const setIsLogin = (isLogin: boolean) => {
-    queryClient.setQueryData<IsLogin>(['isLogin'], { isLogin })
-  }
-  // const [isLogin, setIsLogin] = useState(true)
+  const [isLogin, setIsLogin] = useState(true)
   const { loginMutation, registerMutation, googleLoginMutation } =
     useMutateAuth()
   const { getCsrfToken } = useCookie()
@@ -36,11 +24,12 @@ export const Auth = () => {
 
   const submitAuthHandler: SubmitHandler<Credential> = async (data) => {
     if (isLogin) {
-      loginMutation.mutate({
+      await loginMutation.mutate({
         email: data.email,
         password: data.password,
       })
     } else {
+      console.log('2222222222222222222222')
       await registerMutation
         .mutateAsync({
           email: data.email,
@@ -100,9 +89,14 @@ export const Auth = () => {
       <div
         className="cursor-pointer  text-blue-500 hover:opacity-70"
         onClick={onClickGoogleLogin}
+      ></div>
+      <button
+        className="flex gap-3 items-center py-2 px-6 rounded text-white bg-indigo-600 hover:opacity-70"
+        onClick={onClickGoogleLogin}
       >
+        <FcGoogle />
         Google Login
-      </div>
+      </button>
     </div>
   )
 }
