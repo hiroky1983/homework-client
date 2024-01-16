@@ -7,9 +7,9 @@ export const Top = () => {
   }
   return (
     <div>
-      <p>Todo</p>
+      <p>Top</p>
       <button
-        className="h-6 w-6 my-6 text-blue-500 cursor-pointer"
+        className="py-2 px-4 rounded text-white bg-indigo-600 hover:opacity-70"
         onClick={logout}
       >
         ログアウト

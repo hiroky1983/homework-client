@@ -12,7 +12,7 @@ export const useMutateAuth = () => {
     mutationFn: async (user: Credential) =>
       await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/login`, user),
     onSuccess: () => {
-      router.push('/todo')
+      router.push('/top')
     },
     onError: (err: any) => {
       if (err.response.data.message) {

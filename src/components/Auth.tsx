@@ -16,7 +16,7 @@ export const Auth = () => {
 
   useEffect(() => {
     getCsrfToken()
-  }, [])
+  }, [getCsrfToken])
 
   const onClickGoogleLogin = async () => {
     await googleLoginMutation.mutateAsync()
@@ -24,12 +24,11 @@ export const Auth = () => {
 
   const submitAuthHandler: SubmitHandler<Credential> = async (data) => {
     if (isLogin) {
-      await loginMutation.mutate({
+      loginMutation.mutate({
         email: data.email,
         password: data.password,
       })
     } else {
-      console.log('2222222222222222222222')
       await registerMutation
         .mutateAsync({
           email: data.email,
