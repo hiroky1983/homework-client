@@ -9,3 +9,7 @@ export type Credential = {
 export type IsLogin = {
   isLogin: boolean
 }
+
+export type Chat = {
+  message: string
+}
