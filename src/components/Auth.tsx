@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import type { SubmitHandler } from 'react-hook-form'
 import { useForm } from 'react-hook-form'
 import { FcGoogle } from 'react-icons/fc'
+import { Button } from './Button'
 import { useMutateAuth } from '@/hooks/useMutateAuth'
 import { useCookie } from '@/hooks/useSetCookie'
 import type { Credential } from '@/types'
@@ -96,6 +97,9 @@ export const Auth = () => {
         <FcGoogle />
         Google Login
       </button>
+      <Button handleClick={onClickGoogleLogin} isGoogleSvg>
+        Google ログイン
+      </Button>
     </div>
   )
 }
