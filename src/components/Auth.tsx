@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from 'react'
 import type { SubmitHandler } from 'react-hook-form'
 import { useForm } from 'react-hook-form'
-import { FcGoogle } from 'react-icons/fc'
 import { Button } from './Button'
 import { useMutateAuth } from '@/hooks/useMutateAuth'
 import { useCookie } from '@/hooks/useSetCookie'
@@ -47,7 +46,7 @@ export const Auth = () => {
     <div className="flex justify-center items-center flex-col min-h-screen text-gray-600 font-mono">
       <div className="flex items-center">
         <span className="text-center text-3xl font-extrabold">
-          Todo app by React/Go(Echo)
+          Homework app
         </span>
       </div>
       <h2 className="my-6">{isLogin ? 'Login' : 'Create a new account'}</h2>
@@ -86,19 +85,8 @@ export const Auth = () => {
       >
         change mode
       </div>
-      <div
-        className="cursor-pointer  text-blue-500 hover:opacity-70"
-        onClick={onClickGoogleLogin}
-      ></div>
-      <button
-        className="flex gap-3 items-center py-2 px-6 rounded text-white bg-indigo-600 hover:opacity-70"
-        onClick={onClickGoogleLogin}
-      >
-        <FcGoogle />
-        Google Login
-      </button>
       <Button handleClick={onClickGoogleLogin} isGoogleSvg>
-        Google ログイン
+        Google Login
       </Button>
     </div>
   )

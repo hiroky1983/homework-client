@@ -3,7 +3,6 @@ import { useEffect, useRef, useState } from 'react'
 import type { SubmitHandler } from 'react-hook-form'
 import { useForm } from 'react-hook-form'
 import { Button } from './Button'
-import { useMutateAuth } from '@/hooks/useMutateAuth'
 import type { Chat } from '@/types'
 
 export const Top = () => {
@@ -11,13 +10,8 @@ export const Top = () => {
   const [sentMessage, setSentMessage] = useState('')
 
   const { register, handleSubmit, reset } = useForm<Chat>()
-  const { logoutMutation } = useMutateAuth()
   const socketRef = useRef<WebSocket>()
   const [isConnected, setIsConnected] = useState(false)
-
-  const logout = async () => {
-    await logoutMutation.mutateAsync()
-  }
 
   useEffect(() => {
     const websocket = new WebSocket('ws://localhost:8080/socket')
@@ -55,12 +49,9 @@ export const Top = () => {
   return (
     <div className="flex gap-4 justify-center items-center flex-col min-h-screen text-gray-600 font-mono">
       <p>Top</p>
-      <button
-        className="py-2 px-4 rounded text-white bg-indigo-600 hover:opacity-70"
-        onClick={logout}
-      >
-        ログアウト
-      </button>
+      <p>{`${isConnected}`}</p>
+      <p>{`formMessage: ${formMessage}`}</p>
+      <p>{`sentMessage: ${sentMessage}`}</p>
       <form onSubmit={handleSubmit(handleSubmitChat)}>
         <div className="flex gap-2">
           <input
@@ -74,9 +65,6 @@ export const Top = () => {
           <Button type="submit">送信</Button>
         </div>
       </form>
-      <p>{`${isConnected}`}</p>
-      <p>{`formMessage: ${formMessage}`}</p>
-      <p>{`sentMessage: ${sentMessage}`}</p>
     </div>
   )
 }
