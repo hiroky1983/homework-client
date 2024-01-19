@@ -4,13 +4,13 @@ import type { SubmitHandler } from 'react-hook-form'
 import { useForm } from 'react-hook-form'
 import { Button } from './Button'
 import { Chat as ChatComponents } from './Chat'
-import type { Chat } from '@/types'
+import type { ChatType } from '@/types'
 
 export const Top = () => {
-  const [formMessage, setFormMessage] = useState('')
-  const [sentMessage, setSentMessage] = useState('')
+  const [formMessage, setFormMessage] = useState<ChatType>()
+  const [sentMessage, setSentMessage] = useState<ChatType>()
 
-  const { register, handleSubmit, reset } = useForm<Chat>()
+  const { register, handleSubmit, reset } = useForm<ChatType>()
   const socketRef = useRef<WebSocket>()
   const [isConnected, setIsConnected] = useState(false)
 
@@ -39,10 +39,11 @@ export const Top = () => {
     }
   }, [isConnected])
 
-  const handleSubmitChat: SubmitHandler<Chat> = async (data: Chat) => {
+  const handleSubmitChat: SubmitHandler<ChatType> = async (data: ChatType) => {
     socketRef.current!.send(data.message)
     socketRef.current!.onmessage = (event) => {
-      setFormMessage(event.data)
+      const res = JSON.parse(event.data)
+      setFormMessage(res)
     }
     reset()
   }
@@ -50,7 +51,7 @@ export const Top = () => {
   return (
     <div className="flex gap-4 justify-center items-center flex-col min-h-screen text-gray-600 font-mono">
       <p>Top</p>
-      <ChatComponents />
+      <ChatComponents chat={formMessage!} />
       <form onSubmit={handleSubmit(handleSubmitChat)}>
         <div className="flex gap-2">
           <input

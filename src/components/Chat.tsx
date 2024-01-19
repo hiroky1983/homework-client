@@ -1,13 +1,12 @@
-import type { FC } from 'react'
+'use client'
+import { useState, type FC, useEffect } from 'react'
+import type { ChatType } from '@/types'
 
-type Chat = {
-  id: number
-  message: string
-  sender: 'me' | 'other'
-  createdAt: string
+type Props = {
+  chat: ChatType
 }
 
-const demoChat: Chat[] = [
+const demoChat: ChatType[] = [
   {
     id: 1,
     message: 'Hello Hoge',
@@ -27,20 +26,29 @@ const demoChat: Chat[] = [
     createdAt: '2021-10-12',
   },
 ]
-export const Chat: FC = () => {
+export const Chat: FC<Props> = (props) => {
+  const [chat, setChat] = useState<ChatType[]>(demoChat)
+
+  useEffect(() => {
+    if (props.chat) {
+      setChat((prev) => [...prev, props.chat])
+    }
+  }, [props.chat])
+  console.log(props.chat)
+
   return (
     <div className="w-full">
       <div className="flex flex-col gap-8">
-        {demoChat.map((chat) => (
-          <div key={chat.id}>
+        {chat.map((chat) => (
+          <div key={chat?.id}>
             <div
               className={
-                chat.sender === 'me'
+                chat?.sender === 'me'
                   ? 'float-left text-white bg-green-700 rounded-md p-8'
                   : 'float-right text-gray-700 bg-white rounded-md p-8'
               }
             >
-              {chat.message}
+              {chat?.message}
             </div>
           </div>
         ))}

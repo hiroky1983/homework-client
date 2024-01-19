@@ -10,6 +10,9 @@ export type IsLogin = {
   isLogin: boolean
 }
 
-export type Chat = {
+export type ChatType = {
+  id: number
   message: string
+  sender: 'me' | 'other'
+  createdAt: string
 }
