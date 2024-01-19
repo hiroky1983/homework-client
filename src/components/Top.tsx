@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 import type { SubmitHandler } from 'react-hook-form'
 import { useForm } from 'react-hook-form'
 import { Button } from './Button'
+import { Chat as ChatComponents } from './Chat'
 import type { Chat } from '@/types'
 
 export const Top = () => {
@@ -49,9 +50,7 @@ export const Top = () => {
   return (
     <div className="flex gap-4 justify-center items-center flex-col min-h-screen text-gray-600 font-mono">
       <p>Top</p>
-      <p>{`${isConnected}`}</p>
-      <p>{`formMessage: ${formMessage}`}</p>
-      <p>{`sentMessage: ${sentMessage}`}</p>
+      <ChatComponents />
       <form onSubmit={handleSubmit(handleSubmitChat)}>
         <div className="flex gap-2">
           <input
