@@ -1,46 +1,36 @@
 'use client'
+import dayjs from 'dayjs'
 import { useState, type FC, useEffect } from 'react'
+import { useMutateChat } from '@/hooks/useMutateChat'
 import type { ChatType } from '@/types'
 
 type Props = {
   chat: ChatType
 }
 
-const demoChat: ChatType[] = [
-  {
-    id: 1,
-    message: 'Hello Hoge',
-    sender: 'me',
-    createdAt: '2021-10-10',
-  },
-  {
-    id: 2,
-    message: 'Hello Too, Fuga',
-    sender: 'other',
-    createdAt: '2021-10-11',
-  },
-  {
-    id: 3,
-    message: 'Hew are you?',
-    sender: 'me',
-    createdAt: '2021-10-12',
-  },
-]
 export const Chat: FC<Props> = (props) => {
-  const [chat, setChat] = useState<ChatType[]>(demoChat)
+  const [chat, setChat] = useState<ChatType[]>([])
+  const { getChatMutation } = useMutateChat(setChat)
 
+  useEffect(() => {
+    getChatMutation.mutateAsync()
+  }, [])
   useEffect(() => {
     if (props.chat) {
       setChat((prev) => [...prev, props.chat])
     }
   }, [props.chat])
-  console.log(props.chat)
+  console.log(chat)
 
   return (
     <div className="w-full">
       <div className="flex flex-col gap-8">
         {chat.map((chat) => (
           <div key={chat?.id}>
+            <span>
+              {chat.sender === 'me' &&
+                dayjs(chat.createdAt).format('YYYY/MM/DD')}
+            </span>
             <div
               className={
                 chat?.sender === 'me'
@@ -50,6 +40,10 @@ export const Chat: FC<Props> = (props) => {
             >
               {chat?.message}
             </div>
+            <span className="float-right">
+              {chat.sender === 'other' &&
+                dayjs(chat.createdAt).format('YYYY/MM/DD')}
+            </span>
           </div>
         ))}
       </div>
