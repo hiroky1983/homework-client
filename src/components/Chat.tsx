@@ -20,7 +20,6 @@ export const Chat: FC<Props> = (props) => {
       setChat((prev) => [...prev, props.chat])
     }
   }, [props.chat])
-  console.log(chat)
 
   return (
     <div className="w-full">
