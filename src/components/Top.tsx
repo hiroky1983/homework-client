@@ -1,13 +1,10 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
-import type { SubmitHandler } from 'react-hook-form'
-import { useForm } from 'react-hook-form'
-import { Button } from './Button'
 import { Chat } from './Chat'
+import { Footer } from './Footer'
 import type { ChatType } from '@/types'
 
 export const Top = () => {
-  const { register, handleSubmit, reset } = useForm<ChatType>()
   const [formMessage, setFormMessage] = useState<ChatType>()
   const [isConnected, setIsConnected] = useState(false)
   const socketRef = useRef<WebSocket>()
@@ -34,32 +31,11 @@ export const Top = () => {
     }
   }, [isConnected])
 
-  const handleSubmitChat: SubmitHandler<ChatType> = async (data: ChatType) => {
-    socketRef.current!.send(data.message)
-    socketRef.current!.onmessage = (event) => {
-      const res = JSON.parse(event.data)
-      setFormMessage(res)
-    }
-    reset()
-  }
-
   return (
     <div className="flex gap-4 justify-center items-center flex-col min-h-screen text-gray-600 font-mono">
       <p>Top</p>
       <Chat chat={formMessage!} />
-      <form onSubmit={handleSubmit(handleSubmitChat)}>
-        <div className="flex gap-2">
-          <input
-            {...register('message', { required: true })}
-            className="px-2 text-sm py-2 border border-gray-300"
-            name="message"
-            type="text"
-            autoFocus
-            placeholder="chat内容を入力してください"
-          />
-          <Button type="submit">送信</Button>
-        </div>
-      </form>
+      <Footer setState={setFormMessage} socketRef={socketRef} />
     </div>
   )
 }

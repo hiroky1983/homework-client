@@ -15,6 +15,7 @@ export const Chat: FC<Props> = (props) => {
   useEffect(() => {
     getChatMutation.mutateAsync()
   }, [])
+
   useEffect(() => {
     if (props.chat) {
       setChat((prev) => [...prev, props.chat])
@@ -22,7 +23,7 @@ export const Chat: FC<Props> = (props) => {
   }, [props.chat])
 
   return (
-    <div className="w-full">
+    <div className="w-full overflow-scroll">
       <div className="flex flex-col gap-8">
         {chat.map((chat) => (
           <div key={chat?.id}>
