@@ -16,3 +16,7 @@ export type ChatType = {
   sender: 'me' | 'other'
   createdAt: string
 }
+
+export type DeleteChatType = {
+  id: number
+}

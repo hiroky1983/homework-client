@@ -10,7 +10,7 @@ type Props = {
 
 export const Chat: FC<Props> = (props) => {
   const [chat, setChat] = useState<ChatType[]>([])
-  const { getChatMutation } = useMutateChat(setChat)
+  const { getChatMutation, deleteChatMutation } = useMutateChat(setChat)
 
   useEffect(() => {
     getChatMutation.mutateAsync()
@@ -22,15 +22,26 @@ export const Chat: FC<Props> = (props) => {
     }
   }, [props.chat])
 
+  const onClickDelete = async (c: ChatType) => {
+    await deleteChatMutation.mutateAsync({
+      id: c.id,
+    })
+    setChat((prev) => prev.filter((chat) => chat.id !== c.id))
+  }
+
   return (
     <div className="w-full overflow-scroll">
       <div className="flex flex-col gap-8">
         {chat.map((chat) => (
           <div key={chat?.id}>
-            <span>
-              {chat.sender === 'me' &&
-                dayjs(chat.createdAt).format('YYYY/MM/DD')}
-            </span>
+            {chat.sender === 'me' && (
+              <>
+                <div onClick={async () => await onClickDelete(chat)}>
+                  削除する
+                </div>
+                <span>{dayjs(chat.createdAt).format('YYYY/MM/DD')}</span>
+              </>
+            )}
             <div
               className={
                 chat?.sender === 'me'

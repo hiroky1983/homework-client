@@ -1,24 +1,17 @@
 'use client'
-import type { FC } from 'react'
-import type { SubmitHandler} from 'react-hook-form';
+import type { Dispatch, FC, MutableRefObject, SetStateAction } from 'react'
+import type { SubmitHandler } from 'react-hook-form'
 import { useForm } from 'react-hook-form'
 import { Button } from './Button'
-import { useMutateAuth } from '@/hooks/useMutateAuth'
 import type { ChatType } from '@/types'
 
 type Props = {
-  setState: React.Dispatch<React.SetStateAction<ChatType | undefined>>
-  socketRef: React.MutableRefObject<WebSocket | undefined>
+  setState: Dispatch<SetStateAction<ChatType | undefined>>
+  socketRef: MutableRefObject<WebSocket | undefined>
 }
 
 export const Footer: FC<Props> = (props) => {
   const { register, handleSubmit, reset } = useForm<ChatType>()
-
-  const { logoutMutation } = useMutateAuth()
-
-  const logout = async () => {
-    await logoutMutation.mutateAsync()
-  }
 
   const handleSubmitChat: SubmitHandler<ChatType> = async (data: ChatType) => {
     props.socketRef.current!.send(data.message)
@@ -31,7 +24,7 @@ export const Footer: FC<Props> = (props) => {
 
   return (
     <>
-      <form onSubmit={handleSubmit(handleSubmitChat)}>
+      <form className="m-8" onSubmit={handleSubmit(handleSubmitChat)}>
         <div className="flex gap-2">
           <input
             {...register('message', { required: true })}
