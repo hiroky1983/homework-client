@@ -11,14 +11,9 @@ export const isConnectedState = atom({
   default: false,
 })
 
-export const formMessageState = atom<ChatType>({
+export const formMessageState = atom<ChatType | undefined>({
   key: 'formMessage',
-  default: {
-    id: 0,
-    message: '',
-    sender: 'me',
-    createdAt: '',
-  },
+  default: undefined,
 })
 
 export const chatState = atom<ChatType[]>({

@@ -7,8 +7,9 @@ import { formMessageState, isConnectedState } from '@/store/state'
 import type { ChatType } from '@/types'
 
 export const Top = () => {
-  const [formMessage, setFormMessage] =
-    useRecoilState<ChatType>(formMessageState)
+  const [formMessage, setFormMessage] = useRecoilState<ChatType | undefined>(
+    formMessageState
+  )
   const [isConnected, setIsConnected] = useRecoilState(isConnectedState)
   const socketRef = useRef<WebSocket>()
 

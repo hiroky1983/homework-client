@@ -7,7 +7,7 @@ import { Button } from './Button'
 import type { ChatType } from '@/types'
 
 type Props = {
-  setState: SetterOrUpdater<ChatType>
+  setState: SetterOrUpdater<ChatType | undefined>
   socketRef: MutableRefObject<WebSocket | undefined>
 }
 
