@@ -2,11 +2,12 @@
 import type { Dispatch, FC, MutableRefObject, SetStateAction } from 'react'
 import type { SubmitHandler } from 'react-hook-form'
 import { useForm } from 'react-hook-form'
+import type { SetterOrUpdater } from 'recoil'
 import { Button } from './Button'
 import type { ChatType } from '@/types'
 
 type Props = {
-  setState: Dispatch<SetStateAction<ChatType | undefined>>
+  setState: SetterOrUpdater<ChatType>
   socketRef: MutableRefObject<WebSocket | undefined>
 }
 

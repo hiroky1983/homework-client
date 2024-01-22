@@ -1,7 +1,9 @@
 'use client'
 import dayjs from 'dayjs'
-import { useState, type FC, useEffect } from 'react'
+import { type FC, useEffect } from 'react'
+import { useRecoilState } from 'recoil'
 import { useMutateChat } from '@/hooks/useMutateChat'
+import { chatState } from '@/store/state'
 import type { ChatType } from '@/types'
 
 type Props = {
@@ -9,7 +11,7 @@ type Props = {
 }
 
 export const Chat: FC<Props> = (props) => {
-  const [chat, setChat] = useState<ChatType[]>([])
+  const [chat, setChat] = useRecoilState<ChatType[]>(chatState)
   const { getChatMutation, deleteChatMutation } = useMutateChat(setChat)
 
   useEffect(() => {

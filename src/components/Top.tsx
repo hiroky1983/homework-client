@@ -1,12 +1,15 @@
 'use client'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
+import { useRecoilState } from 'recoil'
 import { Chat } from './Chat'
 import { Footer } from './Footer'
+import { formMessageState, isConnectedState } from '@/store/state'
 import type { ChatType } from '@/types'
 
 export const Top = () => {
-  const [formMessage, setFormMessage] = useState<ChatType>()
-  const [isConnected, setIsConnected] = useState(false)
+  const [formMessage, setFormMessage] =
+    useRecoilState<ChatType>(formMessageState)
+  const [isConnected, setIsConnected] = useRecoilState(isConnectedState)
   const socketRef = useRef<WebSocket>()
 
   useEffect(() => {
