@@ -35,12 +35,15 @@ export const Chat: FC<Props> = (props) => {
         {chat.map((chat) => (
           <div key={chat?.id}>
             {chat.sender === 'me' && (
-              <>
-                <div onClick={async () => await onClickDelete(chat)}>
+              <div>
+                <span
+                  className="hover:cursor-pointer"
+                  onClick={async () => await onClickDelete(chat)}
+                >
                   削除する
-                </div>
+                </span>
                 <span>{dayjs(chat.createdAt).format('YYYY/MM/DD')}</span>
-              </>
+              </div>
             )}
             <div
               className={
