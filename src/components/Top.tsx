@@ -21,12 +21,10 @@ export const Top = () => {
       setIsConnected(true)
     }
 
-    if (isConnected) {
-      return () => {
-        socketRef.current!.onclose = () => {
-          console.log('closed')
-          setIsConnected(false)
-        }
+    return () => {
+      socketRef.current!.onclose = () => {
+        console.log('closed')
+        setIsConnected(false)
       }
     }
   }, [isConnected])
