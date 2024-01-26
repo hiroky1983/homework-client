@@ -60,10 +60,16 @@ export const useMutateAuth = () => {
       }
     },
   })
+  const sendMailMutation = useMutation({
+    mutationFn: async () => {
+      await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/sendmail`)
+    },
+  })
   return {
     loginMutation,
     registerMutation,
     logoutMutation,
     googleLoginMutation,
+    sendMailMutation,
   }
 }
