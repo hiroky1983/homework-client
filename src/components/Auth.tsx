@@ -31,17 +31,10 @@ export const Auth = () => {
         password: data.password,
       })
     } else {
-      await registerMutation
-        .mutateAsync({
-          email: data.email,
-          password: data.password,
-        })
-        .then(() =>
-          loginMutation.mutate({
-            email: data.email,
-            password: data.password,
-          })
-        )
+      await registerMutation.mutateAsync({
+        email: data.email,
+        password: data.password,
+      })
     }
   }
   return (

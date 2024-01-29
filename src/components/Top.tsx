@@ -1,10 +1,8 @@
 'use client'
 import { useEffect, useRef } from 'react'
 import { useRecoilState } from 'recoil'
-import { Button } from './Button'
 import { Chat } from './Chat'
 import { Footer } from './Footer'
-import { useMutateAuth } from '@/hooks/useMutateAuth'
 import { useCookie } from '@/hooks/useSetCookie'
 import { formMessageState, isConnectedState } from '@/store/state'
 import type { ChatType } from '@/types'
@@ -15,7 +13,6 @@ export const Top = () => {
   )
   const [isConnected, setIsConnected] = useRecoilState(isConnectedState)
   const socketRef = useRef<WebSocket>()
-  const { sendMailMutation } = useMutateAuth()
   const { getCsrfToken } = useCookie()
 
   useEffect(() => {
@@ -39,16 +36,9 @@ export const Top = () => {
     }
   }, [isConnected])
 
-  const onClickSendMail = async () => {
-    await sendMailMutation.mutateAsync()
-  }
-
   return (
     <div className="flex gap-4 justify-center items-center flex-col min-h-screen text-gray-600 font-mono">
       <p>Top</p>
-      <Button type="button" handleClick={onClickSendMail}>
-        メール送る
-      </Button>
       <Chat chat={formMessage!} />
       <Footer setState={setFormMessage} socketRef={socketRef} />
     </div>

@@ -25,6 +25,9 @@ export const useMutateAuth = () => {
   const registerMutation = useMutation({
     mutationFn: async (user: Credential) =>
       await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/signup`, user),
+    onSuccess: () => {
+      router.push('/confirm')
+    },
     onError: (err: any) => {
       if (err.response.data.message) {
         switchErrorHandling(err.response.data.message)
@@ -60,16 +63,10 @@ export const useMutateAuth = () => {
       }
     },
   })
-  const sendMailMutation = useMutation({
-    mutationFn: async () => {
-      await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/sendmail`)
-    },
-  })
   return {
     loginMutation,
     registerMutation,
     logoutMutation,
     googleLoginMutation,
-    sendMailMutation,
   }
 }

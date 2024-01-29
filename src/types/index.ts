@@ -20,3 +20,12 @@ export type ChatType = {
 export type DeleteChatType = {
   id: number
 }
+
+export type UpdateUserProfile = {
+  userName: string
+}
+
+export type UserProfile = {
+  userName: string
+  email: string
+}

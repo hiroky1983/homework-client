@@ -1,5 +1,5 @@
 import { atom } from 'recoil'
-import type { ChatType } from '@/types'
+import type { ChatType, UserProfile } from '@/types'
 
 export const isLoginState = atom({
   key: 'isLogin',
@@ -19,4 +19,9 @@ export const formMessageState = atom<ChatType | undefined>({
 export const chatState = atom<ChatType[]>({
   key: 'chat',
   default: [],
+})
+
+export const profileState = atom<UserProfile>({
+  key: 'profile',
+  default: undefined,
 })
