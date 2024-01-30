@@ -2,6 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
+.button {
+  @apply py-2 px-4 rounded hover:opacity-70;
+}
+
+.button-primary {
+  @apply button disabled:opacity-40 text-white bg-primary;
+}
+
+.button-secondary {
+  @apply button text-gray-700 bg-secondary;
+}
+
+.button-p-with-icon {
+  @apply button-primary flex gap-3 items-center;
+}
+
+.button-s-with-icon {
+  @apply button-secondary flex gap-3 items-center;
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;

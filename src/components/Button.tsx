@@ -20,14 +20,8 @@ export const Button: FC<Props> = ({
   return (
     <div>
       <button
-        className={`disabled:opacity-40 py-2 px-4 rounded text-white bg-indigo-600 hover:opacity-70 ${
-          isGoogleSvg &&
-          'flex gap-3 items-center py-2 px-6 rounded text-white bg-indigo-600 hover:opacity-70'
-        } 
-          ${
-            isLogout &&
-            'flex gap-3 items-center py-2 px-6 rounded text-white bg-indigo-600 hover:opacity-70'
-          }
+        className={`button-primary ${isGoogleSvg && 'button-p-with-icon'} 
+          ${isLogout && 'button-s-with-icon'}
           `}
         type={type}
         onClick={handleClick}
