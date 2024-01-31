@@ -47,13 +47,7 @@ export const Chat: FC<Props> = (props) => {
                 <span>{dayjs(chat.createdAt).format('YYYY/MM/DD')}</span>
               </div>
             )}
-            <div
-              className={
-                chat?.sender === 'me'
-                  ? 'float-left text-white bg-green-700 rounded-md p-8'
-                  : 'float-right text-gray-700 bg-white rounded-md p-8'
-              }
-            >
+            <div className={chat?.sender === 'me' ? 'chat-me' : 'chat-other'}>
               {chat?.message}
             </div>
             <span className="float-right">

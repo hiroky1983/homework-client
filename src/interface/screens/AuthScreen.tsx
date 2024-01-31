@@ -3,13 +3,14 @@ import React, { useEffect } from 'react'
 import type { SubmitHandler } from 'react-hook-form'
 import { useForm } from 'react-hook-form'
 import { useRecoilState } from 'recoil'
-import { Button } from './Button'
+
+import { Button } from '../components/Button'
 import { useMutateAuth } from '@/hooks/useMutateAuth'
 import { useCookie } from '@/hooks/useSetCookie'
 import { isLoginState } from '@/store/state'
 import type { Credential } from '@/types'
 
-export const Auth = () => {
+export const AuthScreen = () => {
   const { register, handleSubmit } = useForm<Credential>()
   const [isLogin, setIsLogin] = useRecoilState(isLoginState)
   const { loginMutation, registerMutation, googleLoginMutation } =

@@ -2,12 +2,13 @@ import { useEffect, type FC } from 'react'
 import type { SubmitHandler } from 'react-hook-form'
 import { useForm } from 'react-hook-form'
 import { useRecoilState } from 'recoil'
-import { Button } from './Button'
+
+import { Button } from '../components/Button'
 import { useMutateUserProfile } from '@/hooks/useUserProfile'
 import { profileState } from '@/store/state'
 import type { UpdateUserProfile, UserProfile } from '@/types'
 
-export const Profile: FC = () => {
+export const ProfileScreen: FC = () => {
   const { handleSubmit, register, setValue } = useForm<UpdateUserProfile>()
   const [profile, setProfile] = useRecoilState<UserProfile>(profileState)
   const { updateProfileMutarion, getProfileMutation } = useMutateUserProfile(

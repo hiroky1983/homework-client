@@ -1,13 +1,14 @@
 'use client'
 import { useEffect, useRef } from 'react'
 import { useRecoilState } from 'recoil'
-import { Chat } from './Chat'
-import { Footer } from './Footer'
+
+import { Chat } from '../components/Chat'
+import { Footer } from '../components/Footer'
 import { useCookie } from '@/hooks/useSetCookie'
 import { formMessageState, isConnectedState } from '@/store/state'
 import type { ChatType } from '@/types'
 
-export const Top = () => {
+export const TopScreen = () => {
   const [formMessage, setFormMessage] = useRecoilState<ChatType | undefined>(
     formMessageState
   )

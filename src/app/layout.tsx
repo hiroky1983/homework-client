@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import './globals.css'
 
-import { Header } from '@/components/Header'
+import { Header } from '@/interface/components/Header'
 import { AppProvider } from '@/provider/queryProvider'
 
 export const metadata: Metadata = {
@@ -19,7 +19,7 @@ export default function RootLayout({
       <body className="mx-8">
         <AppProvider>
           <Header />
-          {children}
+          <main>{children}</main>
         </AppProvider>
       </body>
     </html>

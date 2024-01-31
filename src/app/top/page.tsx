@@ -1,4 +1,4 @@
-import { TopScreen } from '@/screens/TopScreen'
+import { TopScreen } from '@/interface/screens/TopScreen'
 
 export default function page() {
   return (
