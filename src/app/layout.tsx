@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import './globals.css'
 
-import { Header } from '@/interface/components/Header'
+import { Header } from '@/components/Header'
 import { AppProvider } from '@/provider/queryProvider'
 
 export const metadata: Metadata = {

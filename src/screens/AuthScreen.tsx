@@ -4,7 +4,7 @@ import type { SubmitHandler } from 'react-hook-form'
 import { useForm } from 'react-hook-form'
 import { useRecoilState } from 'recoil'
 
-import { Button } from '../components/Button'
+import { Button } from '@/components/Button'
 import { useMutateAuth } from '@/hooks/useMutateAuth'
 import { useCookie } from '@/hooks/useSetCookie'
 import { isLoginState } from '@/store/state'

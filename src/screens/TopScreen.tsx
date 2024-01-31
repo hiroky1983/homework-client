@@ -2,8 +2,8 @@
 import { useEffect, useRef } from 'react'
 import { useRecoilState } from 'recoil'
 
-import { Chat } from '../components/Chat'
-import { Footer } from '../components/Footer'
+import { Chat } from '@/components/Chat'
+import { Footer } from '@/components/Footer'
 import { useCookie } from '@/hooks/useSetCookie'
 import { formMessageState, isConnectedState } from '@/store/state'
 import type { ChatType } from '@/types'

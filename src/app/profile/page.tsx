@@ -1,4 +1,4 @@
-import { ProfileScreen } from '@/interface/screens/ProfileScreen'
+import { ProfileScreen } from '@/screens/ProfileScreen'
 
 export default function page() {
   return (

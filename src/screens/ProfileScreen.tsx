@@ -3,7 +3,7 @@ import type { SubmitHandler } from 'react-hook-form'
 import { useForm } from 'react-hook-form'
 import { useRecoilState } from 'recoil'
 
-import { Button } from '../components/Button'
+import { Button } from '@/components/Button'
 import { useMutateUserProfile } from '@/hooks/useUserProfile'
 import { profileState } from '@/store/state'
 import type { UpdateUserProfile, UserProfile } from '@/types'
