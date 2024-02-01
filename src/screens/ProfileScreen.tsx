@@ -1,3 +1,4 @@
+'use client'
 import { useEffect, type FC } from 'react'
 import type { SubmitHandler } from 'react-hook-form'
 import { useForm } from 'react-hook-form'
