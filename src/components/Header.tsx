@@ -10,8 +10,6 @@ export const Header = () => {
     await logoutMutation.mutateAsync()
   }
 
-  console.log('Header rendered')
-
   return (
     <div className="flex py-4 justify-between">
       <Link href="/top">

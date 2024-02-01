@@ -1,7 +1,8 @@
 'use client'
-import { useEffect, useRef } from 'react'
+import { Suspense, useEffect, useRef } from 'react'
 import { useRecoilState } from 'recoil'
 
+import Loading from '@/app/loading'
 import { Chat } from '@/components/Chat'
 import { Footer } from '@/components/Footer'
 import { useCookie } from '@/hooks/useSetCookie'
@@ -38,10 +39,12 @@ export const TopScreen = () => {
   }, [isConnected])
 
   return (
-    <div className="flex gap-4 justify-center items-center flex-col min-h-screen text-gray-600 font-mono">
-      <p>Top</p>
-      <Chat chat={formMessage!} />
-      <Footer setState={setFormMessage} socketRef={socketRef} />
-    </div>
+    <Suspense fallback={<Loading />}>
+      <div className="flex gap-4 justify-center items-center flex-col min-h-screen text-gray-600 font-mono">
+        <p>Top</p>
+        <Chat chat={formMessage!} />
+        <Footer setState={setFormMessage} socketRef={socketRef} />
+      </div>
+    </Suspense>
   )
 }
