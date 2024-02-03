@@ -37,7 +37,7 @@ export const Chat: FC<Props> = (props) => {
         {chat.map((chat) => (
           <div key={chat?.id}>
             <div className={chat?.sender === 'me' ? 'chat-me' : 'chat-other'}>
-              {chat?.message}
+              <p>{chat?.message}</p>
             </div>
             {chat.sender === 'me' && (
               <div>

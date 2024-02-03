@@ -28,7 +28,7 @@ export const Footer: FC<Props> = (props) => {
       <div className="flex gap-4">
         <input
           {...register('message', { required: true })}
-          className="px-2 text-sm py-2 border border-gray-300 w-3/4"
+          className="px-2 text-sm py-2 border border-gray-300 w-3/4 text-gray-700"
           name="message"
           type="text"
           autoFocus
