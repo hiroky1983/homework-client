@@ -46,11 +46,14 @@ export const AuthScreen = () => {
         </span>
       </div>
       <h2 className="my-6">{isLogin ? 'Login' : 'Create a new account'}</h2>
-      <form onSubmit={handleSubmit(submitAuthHandler)}>
+      <form
+        className="flex flex-col gap-3"
+        onSubmit={handleSubmit(submitAuthHandler)}
+      >
         <div>
           <input
             {...register('email', { required: true })}
-            className="mb-3 px-3 text-sm py-2 border border-gray-300"
+            className="input"
             name="email"
             type="email"
             autoFocus
@@ -60,19 +63,14 @@ export const AuthScreen = () => {
         <div>
           <input
             {...register('password', { required: true })}
-            className="mb-3 px-3 text-sm py-2 border border-gray-300"
+            className="input"
             name="password"
             type="password"
             placeholder="Password"
           />
         </div>
         <div className="flex justify-center my-2">
-          <button
-            className="disabled:opacity-40 py-2 px-4 rounded text-white bg-indigo-600 hover:opacity-70"
-            type="submit"
-          >
-            {isLogin ? 'Login' : 'Sign Up'}
-          </button>
+          <Button type="submit">{isLogin ? 'Login' : 'Sign Up'}</Button>
         </div>
       </form>
       <div

@@ -43,7 +43,7 @@ export const ProfileScreen: FC = () => {
             <div>
               <input
                 {...register('userName', { required: true })}
-                className="text-gray-600"
+                className="input"
                 type="text"
                 name="userName"
               />

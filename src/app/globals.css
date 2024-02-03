@@ -34,6 +34,10 @@
   @apply max-w-64 break-words whitespace-pre-wrap float-right text-gray-700 bg-white rounded-md p-6 ml-2;
 }
 
+.input {
+  @apply p-2 text-sm border border-gray-300 text-gray-700 rounded-md;
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
