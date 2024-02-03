@@ -40,11 +40,10 @@ export const TopScreen = () => {
 
   return (
     <Suspense fallback={<Loading />}>
-      <div className="flex gap-4 justify-center items-center flex-col min-h-screen text-gray-600 font-mono">
-        <p>Top</p>
+      <div className="h-full flex gap-4 items-center flex-col text-gray-600 font-mono">
         <Chat chat={formMessage!} />
-        <Footer setState={setFormMessage} socketRef={socketRef} />
       </div>
+      <Footer setState={setFormMessage} socketRef={socketRef} />
     </Suspense>
   )
 }

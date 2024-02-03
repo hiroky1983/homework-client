@@ -16,7 +16,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja">
-      <body className="mx-8">
+      <body className="wrapper">
         <AppProvider>
           <Header />
           <main>{children}</main>

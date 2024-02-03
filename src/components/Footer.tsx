@@ -24,20 +24,18 @@ export const Footer: FC<Props> = (props) => {
   }
 
   return (
-    <>
-      <form className="m-8" onSubmit={handleSubmit(handleSubmitChat)}>
-        <div className="flex gap-2">
-          <input
-            {...register('message', { required: true })}
-            className="px-2 text-sm py-2 border border-gray-300"
-            name="message"
-            type="text"
-            autoFocus
-            placeholder="chat内容を入力してください"
-          />
-          <Button type="submit">送信</Button>
-        </div>
-      </form>
-    </>
+    <form className="m-8" onSubmit={handleSubmit(handleSubmitChat)}>
+      <div className="flex gap-4">
+        <input
+          {...register('message', { required: true })}
+          className="px-2 text-sm py-2 border border-gray-300 w-3/4"
+          name="message"
+          type="text"
+          autoFocus
+          placeholder="chat内容を入力してください"
+        />
+        <Button type="submit">送信</Button>
+      </div>
+    </form>
   )
 }
