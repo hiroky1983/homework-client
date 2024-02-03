@@ -32,24 +32,26 @@ export const Chat: FC<Props> = (props) => {
   }
 
   return (
-    <div className="w-full overflow-scroll">
+    <div className="w-full h-full overflow-scroll text-white">
       <div className="flex flex-col gap-8">
         {chat.map((chat) => (
           <div key={chat?.id}>
-            {chat.sender === 'me' && (
-              <div>
-                <span
-                  className="hover:cursor-pointer"
-                  onClick={async () => await onClickDelete(chat)}
-                >
-                  削除する
-                </span>
-                <span>{dayjs(chat.createdAt).format('YYYY/MM/DD')}</span>
-              </div>
-            )}
             <div className={chat?.sender === 'me' ? 'chat-me' : 'chat-other'}>
               {chat?.message}
             </div>
+            {chat.sender === 'me' && (
+              <div>
+                <span>{dayjs(chat.createdAt).format('YYYY/MM/DD')}</span>
+                <div>
+                  <span
+                    className="hover:cursor-pointer hover:text-red-500"
+                    onClick={async () => await onClickDelete(chat)}
+                  >
+                    削除する
+                  </span>
+                </div>
+              </div>
+            )}
             <span className="float-right">
               {chat.sender === 'other' &&
                 dayjs(chat.createdAt).format('YYYY/MM/DD')}
