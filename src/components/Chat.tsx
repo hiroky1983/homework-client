@@ -32,7 +32,7 @@ export const Chat: FC<Props> = (props) => {
   }
 
   return (
-    <div className="w-full h-full overflow-scroll text-white">
+    <div className="w-full h-full overflow-scroll text-gray-500 text-sm">
       <div className="flex flex-col gap-8">
         {chat.map((chat) => (
           <div key={chat?.id}>
@@ -40,7 +40,7 @@ export const Chat: FC<Props> = (props) => {
               <p>{chat?.message}</p>
             </div>
             {chat.sender === 'me' && (
-              <div>
+              <div className="float-right">
                 <span>{dayjs(chat.createdAt).format('YYYY/MM/DD')}</span>
                 <div>
                   <span
@@ -52,7 +52,7 @@ export const Chat: FC<Props> = (props) => {
                 </div>
               </div>
             )}
-            <span className="float-right">
+            <span className="float-left">
               {chat.sender === 'other' &&
                 dayjs(chat.createdAt).format('YYYY/MM/DD')}
             </span>
