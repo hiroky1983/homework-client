@@ -27,11 +27,11 @@
 }
 
 .chat-other {
-  @apply max-w-64 break-words whitespace-pre-wrap float-left  text-white bg-gray-500  rounded-2xl p-3 mr-2;
+  @apply max-w-64 break-words whitespace-pre-wrap text-white bg-gray-500  rounded-2xl p-3 mr-2;
 }
 
 .chat-me {
-  @apply max-w-64 break-words whitespace-pre-wrap float-right text-gray-700  bg-green-400 rounded-2xl p-4 ml-2;
+  @apply max-w-64 break-words whitespace-pre-wrap text-gray-700  bg-green-400 rounded-2xl p-4 ml-2;
 }
 
 .input {

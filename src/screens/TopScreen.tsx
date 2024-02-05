@@ -42,7 +42,7 @@ export const TopScreen = () => {
     <div className="h-full">
       <Suspense fallback={<Loading />}>
         <div className="flex gap-4 items-center flex-col text-gray-600 font-mono">
-          <Chat chat={formMessage!} />
+          <Chat chats={formMessage!} />
         </div>
         <Footer setState={setFormMessage} socketRef={socketRef} />
       </Suspense>
