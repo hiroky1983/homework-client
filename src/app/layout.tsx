@@ -17,12 +17,12 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body>
-        <div className="wrapper">
-          <AppProvider>
+        <AppProvider>
+          <div className="wrapper">
             <Header />
             <main>{children}</main>
-          </AppProvider>
-        </div>
+          </div>
+        </AppProvider>
       </body>
     </html>
   )

@@ -39,11 +39,11 @@ export const Chat: FC<Props> = (props) => {
           <div key={chat?.id}>
             <div
               className={
-                chat.sender === 'me' ? 'flex flex-row-reverse' : 'flex'
+                chat.sender === 'me' ? 'flex flex-row-reverse' : 'flex gap-2'
               }
             >
               {chat.sender === 'other' && (
-                <Image src="/icon.png" alt="icon" width={30} height={5} />
+                <Image src="/icon.png" alt="icon" width={40} height={5} />
               )}
               <div className={chat?.sender === 'me' ? 'chat-me' : 'chat-other'}>
                 {chat?.message}
