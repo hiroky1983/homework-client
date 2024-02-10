@@ -1,5 +1,5 @@
 'use client'
-import { Suspense, useEffect, useRef } from 'react'
+import { type FC, Suspense, useEffect, useRef } from 'react'
 import { useRecoilState } from 'recoil'
 
 import Loading from '@/app/loading'
@@ -9,7 +9,7 @@ import { useCookie } from '@/hooks/useSetCookie'
 import { formMessageState, isConnectedState } from '@/store/state'
 import type { ChatType } from '@/types'
 
-export const TopScreen = () => {
+export const TopScreen: FC = () => {
   const [formMessage, setFormMessage] = useRecoilState<ChatType | undefined>(
     formMessageState
   )

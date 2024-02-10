@@ -29,3 +29,10 @@ export type UserProfile = {
   userName: string
   email: string
 }
+
+// todo user_nameをキャメルケースにリファクタリングする
+export type UserType = {
+  id: string
+  user_name: string
+  email: string
+}

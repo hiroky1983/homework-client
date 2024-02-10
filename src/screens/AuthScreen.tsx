@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect } from 'react'
+import React, { type FC, useEffect } from 'react'
 import type { SubmitHandler } from 'react-hook-form'
 import { useForm } from 'react-hook-form'
 import { useRecoilState } from 'recoil'
@@ -10,7 +10,7 @@ import { useCookie } from '@/hooks/useSetCookie'
 import { isLoginState } from '@/store/state'
 import type { Credential } from '@/types'
 
-export const AuthScreen = () => {
+export const AuthScreen: FC = () => {
   const { register, handleSubmit } = useForm<Credential>()
   const [isLogin, setIsLogin] = useRecoilState(isLoginState)
   const { loginMutation, registerMutation, googleLoginMutation } =
