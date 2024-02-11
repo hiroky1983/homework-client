@@ -35,7 +35,7 @@ export const ChatListScreen: FC = () => {
             >
               <div className="flex items-center gap-2">
                 <Image src="/icon.png" alt="icon" width={40} height={40} />
-                <p>{user.user_name}</p>
+                <p>{user.userName}</p>
               </div>
               <Button handleClick={() => onClickChatRoom(user.id)}>
                 チャットを始める

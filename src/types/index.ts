@@ -30,9 +30,8 @@ export type UserProfile = {
   email: string
 }
 
-// todo user_nameをキャメルケースにリファクタリングする
 export type UserType = {
   id: string
-  user_name: string
+  userName: string
   email: string
 }
