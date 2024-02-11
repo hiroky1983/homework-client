@@ -1,3 +1,5 @@
+import { ChatScreen } from '@/screens/ChatScreen'
+
 type Props = {
   params: {
     slug: string
@@ -5,9 +7,10 @@ type Props = {
 }
 
 export default function page({ params }: { params: { id: string } }) {
+  console.log(params.id)
   return (
-    <div>
-      <div>{params.id}</div>
-    </div>
+    <>
+      <ChatScreen />
+    </>
   )
 }

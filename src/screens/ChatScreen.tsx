@@ -9,7 +9,7 @@ import { useCookie } from '@/hooks/useSetCookie'
 import { formMessageState, isConnectedState } from '@/store/state'
 import type { ChatType } from '@/types'
 
-export const TopScreen: FC = () => {
+export const ChatScreen: FC = () => {
   const [formMessage, setFormMessage] = useRecoilState<ChatType | undefined>(
     formMessageState
   )
