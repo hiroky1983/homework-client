@@ -16,6 +16,7 @@ export const Header = () => {
         <h1>Home work</h1>
       </Link>
       <Link href="/profile">Profile</Link>
+      <Link href="/users">users</Link>
       <Button handleClick={logout} isLogout>
         Logout
       </Button>
