@@ -9,7 +9,11 @@ import { useCookie } from '@/hooks/useSetCookie'
 import { formMessageState, isConnectedState } from '@/store/state'
 import type { ChatType } from '@/types'
 
-export const ChatScreen: FC = () => {
+type Props = {
+  id: string
+}
+
+export const ChatScreen: FC<Props> = (props) => {
   const [formMessage, setFormMessage] = useRecoilState<ChatType | undefined>(
     formMessageState
   )
@@ -40,6 +44,7 @@ export const ChatScreen: FC = () => {
 
   return (
     <div className="h-full">
+      <p>{props.id}</p>
       <Suspense fallback={<Loading />}>
         <div className="flex gap-4 items-center flex-col text-gray-600 font-mono">
           <Chat chats={formMessage!} />

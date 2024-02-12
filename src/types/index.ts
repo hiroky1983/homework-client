@@ -1,13 +1,6 @@
-export type CsrfToken = {
-  csrf_token: string
-}
-export type Credential = {
+export type CredentialType = {
   email: string
   password: string
-}
-
-export type IsLogin = {
-  isLogin: boolean
 }
 
 export type ChatType = {
@@ -21,11 +14,11 @@ export type DeleteChatType = {
   id: number
 }
 
-export type UpdateUserProfile = {
+export type UpdateUserProfileType = {
   userName: string
 }
 
-export type UserProfile = {
+export type UserProfileType = {
   userName: string
   email: string
 }
@@ -34,4 +27,5 @@ export type UserType = {
   id: string
   userName: string
   email: string
+  roomID: string
 }

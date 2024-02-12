@@ -7,19 +7,19 @@ import { useRecoilState } from 'recoil'
 import { Button } from '@/components/Button'
 import { useMutateUserProfile } from '@/hooks/useUserProfile'
 import { profileState } from '@/store/state'
-import type { UpdateUserProfile, UserProfile } from '@/types'
+import type { UpdateUserProfileType, UserProfileType } from '@/types'
 
 export const ProfileScreen: FC = () => {
-  const { handleSubmit, register, setValue } = useForm<UpdateUserProfile>()
-  const [profile, setProfile] = useRecoilState<UserProfile>(profileState)
+  const { handleSubmit, register, setValue } = useForm<UpdateUserProfileType>()
+  const [profile, setProfile] = useRecoilState<UserProfileType>(profileState)
   const { updateProfileMutarion, getProfileMutation } = useMutateUserProfile(
     setProfile,
     setValue
   )
 
-  const submitUpdateProfileHandler: SubmitHandler<UpdateUserProfile> = async (
-    data
-  ) => {
+  const submitUpdateProfileHandler: SubmitHandler<
+    UpdateUserProfileType
+  > = async (data) => {
     await updateProfileMutarion.mutateAsync({
       userName: data.userName,
     })

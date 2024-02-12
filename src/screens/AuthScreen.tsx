@@ -8,10 +8,10 @@ import { Button } from '@/components/Button'
 import { useMutateAuth } from '@/hooks/useMutateAuth'
 import { useCookie } from '@/hooks/useSetCookie'
 import { isLoginState } from '@/store/state'
-import type { Credential } from '@/types'
+import type { CredentialType } from '@/types'
 
 export const AuthScreen: FC = () => {
-  const { register, handleSubmit } = useForm<Credential>()
+  const { register, handleSubmit } = useForm<CredentialType>()
   const [isLogin, setIsLogin] = useRecoilState(isLoginState)
   const { loginMutation, registerMutation, googleLoginMutation } =
     useMutateAuth()
@@ -25,7 +25,7 @@ export const AuthScreen: FC = () => {
     await googleLoginMutation.mutateAsync()
   }
 
-  const submitAuthHandler: SubmitHandler<Credential> = async (data) => {
+  const submitAuthHandler: SubmitHandler<CredentialType> = async (data) => {
     if (isLogin) {
       loginMutation.mutate({
         email: data.email,

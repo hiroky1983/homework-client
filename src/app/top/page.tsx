@@ -1,7 +1,9 @@
+import { TopScreen } from '@/screens/TopScreen'
+
 export default function page() {
   return (
     <>
-      <div>Top</div>
+      <TopScreen />
     </>
   )
 }

@@ -3,13 +3,13 @@ import axios from 'axios'
 
 import { useRouter } from 'next/navigation'
 import { useError } from './useError'
-import type { Credential } from '@/types'
+import type { CredentialType } from '@/types'
 
 export const useMutateAuth = () => {
   const router = useRouter()
   const { switchErrorHandling } = useError()
   const loginMutation = useMutation({
-    mutationFn: async (user: Credential) =>
+    mutationFn: async (user: CredentialType) =>
       await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/login`, user),
     onSuccess: () => {
       router.push('/top')
@@ -23,7 +23,7 @@ export const useMutateAuth = () => {
     },
   })
   const registerMutation = useMutation({
-    mutationFn: async (user: Credential) =>
+    mutationFn: async (user: CredentialType) =>
       await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/signup`, user),
     onSuccess: () => {
       router.push('/confirm')
