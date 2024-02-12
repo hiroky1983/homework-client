@@ -1,18 +1,19 @@
 'use client'
 import Image from 'next/image'
-import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 import { useEffect, type FC, Suspense } from 'react'
 import { useRecoilState } from 'recoil'
 import Loading from '@/app/loading'
 import { Button } from '@/components/Button'
+import { useMutateRoom } from '@/hooks/useRoom'
 import { useMutateUser } from '@/hooks/useUser'
 import { userListState } from '@/store/state'
 import type { UserType } from '@/types'
 
 export const ChatListScreen: FC = () => {
   const { getUsersMutation } = useMutateUser()
+  const { createRoomMutarion } = useMutateRoom()
   const [users, setUsers] = useRecoilState<UserType[]>(userListState)
-  const router = useRouter()
 
   useEffect(() => {
     getUsersMutation.mutateAsync().then((res) => {
@@ -21,8 +22,12 @@ export const ChatListScreen: FC = () => {
   }, [])
 
   const onClickChatRoom = async (id: string) => {
-    router.push(`/chat/${id}`)
+    await createRoomMutarion.mutateAsync({
+      user_id: id,
+    })
   }
+
+  console.log(users)
 
   return (
     <div className="h-screen">
@@ -37,9 +42,17 @@ export const ChatListScreen: FC = () => {
                 <Image src="/icon.png" alt="icon" width={40} height={40} />
                 <p>{user.userName}</p>
               </div>
-              <Button handleClick={() => onClickChatRoom(user.id)}>
-                チャットを始める
-              </Button>
+              {user.roomId ? (
+                <Link className="text-3xl" href={`/chat/${user.roomId}`}>
+                  &gt;
+                </Link>
+              ) : (
+                <Button
+                  handleClick={async () => await onClickChatRoom(user.id)}
+                >
+                  チャットを始める
+                </Button>
+              )}
             </li>
           ))}
         </ul>

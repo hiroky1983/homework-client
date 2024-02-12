@@ -27,5 +27,9 @@ export type UserType = {
   id: string
   userName: string
   email: string
-  roomID: string
+  roomId: string
+}
+
+export type CreateRoomRequestType = {
+  user_id: string
 }
