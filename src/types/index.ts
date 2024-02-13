@@ -33,3 +33,7 @@ export type UserType = {
 export type CreateRoomRequestType = {
   user_id: string
 }
+
+export type CreateRoomResponseType = {
+  roomId: string
+}
