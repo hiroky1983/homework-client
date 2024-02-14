@@ -27,8 +27,6 @@ export const ChatListScreen: FC = () => {
     })
   }
 
-  console.log(users)
-
   return (
     <div className="h-screen">
       <Suspense fallback={<Loading />}>

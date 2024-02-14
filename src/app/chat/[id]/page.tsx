@@ -10,7 +10,7 @@ export default function page({ params }: { params: { id: string } }) {
   console.log(params.id)
   return (
     <>
-      <ChatScreen id={params.id} />
+      <ChatScreen roomId={params.id} />
     </>
   )
 }

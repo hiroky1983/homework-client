@@ -9,13 +9,19 @@ import type { ChatType } from '@/types'
 type Props = {
   setState: SetterOrUpdater<ChatType | undefined>
   socketRef: MutableRefObject<WebSocket | undefined>
+  roomId: string
 }
 
 export const Footer: FC<Props> = (props) => {
   const { register, handleSubmit, reset } = useForm<ChatType>()
 
   const handleSubmitChat: SubmitHandler<ChatType> = async (data: ChatType) => {
-    props.socketRef.current!.send(data.message)
+    const req = {
+      message: data.message,
+      roomId: props.roomId,
+    }
+
+    props.socketRef.current!.send(JSON.stringify(req))
     props.socketRef.current!.onmessage = (event) => {
       const res = JSON.parse(event.data)
       props.setState(res)

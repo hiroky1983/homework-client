@@ -9,6 +9,7 @@ import type { ChatType } from '@/types'
 
 type Props = {
   chats: ChatType
+  roomId: string
 }
 
 export const Chat: FC<Props> = (props) => {
@@ -16,7 +17,7 @@ export const Chat: FC<Props> = (props) => {
   const { getChatMutation, deleteChatMutation } = useMutateChat(setChats)
 
   useEffect(() => {
-    getChatMutation.mutateAsync()
+    getChatMutation.mutateAsync({ roomId: props.roomId })
   }, [])
 
   useEffect(() => {

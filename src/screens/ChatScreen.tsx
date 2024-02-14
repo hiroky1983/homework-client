@@ -10,7 +10,7 @@ import { formMessageState, isConnectedState } from '@/store/state'
 import type { ChatType } from '@/types'
 
 type Props = {
-  id: string
+  roomId: string
 }
 
 export const ChatScreen: FC<Props> = (props) => {
@@ -44,12 +44,15 @@ export const ChatScreen: FC<Props> = (props) => {
 
   return (
     <div className="h-full">
-      <p>{props.id}</p>
       <Suspense fallback={<Loading />}>
         <div className="flex gap-4 items-center flex-col text-gray-600 font-mono">
-          <Chat chats={formMessage!} />
+          <Chat chats={formMessage!} roomId={props.roomId} />
         </div>
-        <Footer setState={setFormMessage} socketRef={socketRef} />
+        <Footer
+          setState={setFormMessage}
+          socketRef={socketRef}
+          roomId={props.roomId}
+        />
       </Suspense>
     </div>
   )
