@@ -2,6 +2,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, type FC, Suspense } from 'react'
+import { FaChevronRight } from 'react-icons/fa'
 import { useRecoilState } from 'recoil'
 import Loading from '@/app/loading'
 import { Button } from '@/components/Button'
@@ -41,8 +42,8 @@ export const ChatListScreen: FC = () => {
                 <p>{user.userName}</p>
               </div>
               {user.roomId ? (
-                <Link className="text-3xl" href={`/chat/${user.roomId}`}>
-                  &gt;
+                <Link className="text-2xl" href={`/chat/${user.roomId}`}>
+                  <FaChevronRight />
                 </Link>
               ) : (
                 <Button
