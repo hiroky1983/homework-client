@@ -26,9 +26,9 @@ export const useMutateUserProfile = (
     mutationFn: async () =>
       await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/user/get_profile`),
     onSuccess: (data) => {
-      setValue('userName', data.data.user_name)
+      setValue('userName', data.data.userName)
       setState({
-        userName: data.data.user_name,
+        userName: data.data.userName,
         email: data.data.email,
       })
     },
