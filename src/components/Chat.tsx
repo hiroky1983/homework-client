@@ -3,7 +3,8 @@ import dayjs from 'dayjs'
 import Image from 'next/image'
 import { type FC, useEffect } from 'react'
 import { useRecoilState } from 'recoil'
-import { Modal } from './Modal'
+import { Modal } from './modal/Modal'
+import { DeleteChat } from './modal/chirdren/DeleteChat'
 import { useMutateChat } from '@/hooks/useMutateChat'
 import { chatState, isOpenState } from '@/store/state'
 import type { ChatType } from '@/types'
@@ -49,7 +50,9 @@ export const Chat: FC<Props> = (props) => {
               <Modal
                 onOpen={onOpen}
                 hadleClick={async () => onClickDelete(chat)}
-              />
+              >
+                <DeleteChat />
+              </Modal>
             )}
             <div
               className={
