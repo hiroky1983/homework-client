@@ -37,12 +37,14 @@ export const ChatListScreen: FC = () => {
               key={user.id}
               className="flex justify-between gap-2 border-b-2 py-2"
             >
-              <div className="flex items-center gap-2">
-                <Image src="/icon.png" alt="icon" width={40} height={40} />
-                <p>{user.userName}</p>
-              </div>
+              <Link href={`/chat/${user.roomId}`}>
+                <div className="flex items-center gap-2">
+                  <Image src="/icon.png" alt="icon" width={40} height={40} />
+                  <p className="text-xl">{user.userName}</p>
+                </div>
+              </Link>
               {user.roomId ? (
-                <Link className="text-2xl" href={`/chat/${user.roomId}`}>
+                <Link href={`/chat/${user.roomId}`}>
                   <FaChevronRight />
                 </Link>
               ) : (

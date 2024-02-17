@@ -42,7 +42,7 @@ export const Chat: FC<Props> = (props) => {
   }
 
   return (
-    <div className="w-full h-full overflow-scroll text-gray-500 text-sm">
+    <div className="w-full text-gray-500 text-sm">
       <div className="flex flex-col gap-8">
         {chats.map((chat) => (
           <div key={chat?.id}>

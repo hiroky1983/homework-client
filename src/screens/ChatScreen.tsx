@@ -43,7 +43,7 @@ export const ChatScreen: FC<Props> = (props) => {
   }, [isConnected])
 
   return (
-    <div className="h-full">
+    <div>
       <Suspense fallback={<Loading />}>
         <div className="flex gap-4 items-center flex-col text-gray-600 font-mono">
           <Chat chats={formMessage!} roomId={props.roomId} />
