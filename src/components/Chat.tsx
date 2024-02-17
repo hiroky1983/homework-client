@@ -3,8 +3,9 @@ import dayjs from 'dayjs'
 import Image from 'next/image'
 import { type FC, useEffect } from 'react'
 import { useRecoilState } from 'recoil'
+import { Modal } from './Modal'
 import { useMutateChat } from '@/hooks/useMutateChat'
-import { chatState } from '@/store/state'
+import { chatState, isOpenState } from '@/store/state'
 import type { ChatType } from '@/types'
 
 type Props = {
@@ -14,6 +15,7 @@ type Props = {
 
 export const Chat: FC<Props> = (props) => {
   const [chats, setChats] = useRecoilState<ChatType[]>(chatState)
+  const [isOpne, setIsOpen] = useRecoilState(isOpenState)
   const { getChatMutation, deleteChatMutation } = useMutateChat(setChats)
 
   useEffect(() => {
@@ -31,6 +33,11 @@ export const Chat: FC<Props> = (props) => {
       id: c.id,
     })
     setChats((prev) => prev.filter((chat) => chat.id !== c.id))
+    setIsOpen(false)
+  }
+
+  const onOpen = () => {
+    setIsOpen(!isOpne)
   }
 
   return (
@@ -38,6 +45,12 @@ export const Chat: FC<Props> = (props) => {
       <div className="flex flex-col gap-8">
         {chats.map((chat) => (
           <div key={chat?.id}>
+            {isOpne && (
+              <Modal
+                onOpen={onOpen}
+                hadleClick={async () => onClickDelete(chat)}
+              />
+            )}
             <div
               className={
                 chat.sender === 'me' ? 'flex flex-row-reverse' : 'flex gap-2'
@@ -54,7 +67,7 @@ export const Chat: FC<Props> = (props) => {
                 {chat.sender === 'me' && (
                   <p
                     className="hover:cursor-pointer hover:text-red-500"
-                    onClick={async () => await onClickDelete(chat)}
+                    onClick={onOpen}
                   >
                     削除する
                   </p>

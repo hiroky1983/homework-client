@@ -30,3 +30,8 @@ export const userListState = atom<UserType[]>({
   key: 'userList',
   default: [],
 })
+
+export const isOpenState = atom({
+  key: 'isOpen',
+  default: false,
+})
