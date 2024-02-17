@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image'
 import { useEffect, type FC } from 'react'
 import type { SubmitHandler } from 'react-hook-form'
 import { useForm } from 'react-hook-form'
@@ -22,6 +23,7 @@ export const ProfileScreen: FC = () => {
   > = async (data) => {
     await updateProfileMutarion.mutateAsync({
       userName: data.userName,
+      profile: data.profile,
     })
   }
 
@@ -35,17 +37,32 @@ export const ProfileScreen: FC = () => {
       <form onSubmit={handleSubmit(submitUpdateProfileHandler)}>
         <ul className="flex flex-col gap-4">
           <li>
-            <label htmlFor="email">email</label>
+            <Image src="/icon.png" alt="icon" width={100} height={100} />
+          </li>
+          <li>
+            <label htmlFor="email">メールアドレス</label>
             <p>{profile?.email}</p>
           </li>
           <li>
-            <label htmlFor="">username</label>
+            <label htmlFor="userName">ユーザー名</label>
             <div>
               <input
                 {...register('userName', { required: true })}
                 className="input"
                 type="text"
                 name="userName"
+              />
+            </div>
+          </li>
+          <li>
+            <label htmlFor="profile">プロフィール</label>
+            <div>
+              <textarea
+                {...register('profile', { required: true })}
+                name="profile"
+                className="input"
+                rows={5}
+                cols={30}
               />
             </div>
           </li>

@@ -16,6 +16,7 @@ export type DeleteChatType = {
 
 export type UpdateUserProfileType = {
   userName: string
+  profile: string
 }
 
 export type UserProfileType = {

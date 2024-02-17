@@ -28,6 +28,7 @@ export const useMutateUserProfile = (
         .data,
     onSuccess: (data: UserProfileType) => {
       setValue('userName', data.userName)
+      setValue('profile', data.profile)
       setState({
         userName: data.userName,
         email: data.email,
