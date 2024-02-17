@@ -24,12 +24,14 @@ export const useMutateUserProfile = (
 
   const getProfileMutation = useMutation({
     mutationFn: async () =>
-      await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/user/get_profile`),
-    onSuccess: (data) => {
-      setValue('userName', data.data.userName)
+      (await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/user/get_profile`))
+        .data,
+    onSuccess: (data: UserProfileType) => {
+      setValue('userName', data.userName)
       setState({
-        userName: data.data.userName,
-        email: data.data.email,
+        userName: data.userName,
+        email: data.email,
+        profile: data.profile,
       })
     },
   })

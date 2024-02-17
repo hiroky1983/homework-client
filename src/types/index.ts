@@ -21,6 +21,7 @@ export type UpdateUserProfileType = {
 export type UserProfileType = {
   userName: string
   email: string
+  profile: string
 }
 
 export type UserType = {
