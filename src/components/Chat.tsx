@@ -37,9 +37,7 @@ export const Chat: FC<Props> = (props) => {
     setIsOpen(false)
   }
 
-  const onOpen = () => {
-    setIsOpen(!isOpne)
-  }
+  const onOpen = () => setIsOpen(!isOpne)
 
   return (
     <div className="w-full text-gray-500 text-sm">
