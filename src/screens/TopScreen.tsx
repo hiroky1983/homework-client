@@ -34,6 +34,7 @@ export const TopScreen = () => {
         <li>tailwind周り、JITの導入</li>
         <li>CSSコンテナ周りの共通化</li>
         <li>CSS chatコンテンツのスクロール、heightの固定化</li>
+        <li>フロントエンドテストの実装</li>
         <li></li>
       </ul>
       <div className="hidden"></div>
