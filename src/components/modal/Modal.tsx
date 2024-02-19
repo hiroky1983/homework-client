@@ -10,7 +10,7 @@ type Props = {
 
 export const Modal: FC<Props> = ({ onOpen, hadleClick, children }) => {
   return (
-    <div className="bg-gray-500 bg-opacity-50 fixed inset-0 flex justify-center items-center">
+    <div className="bg-gray-500 bg-opacity-5 fixed inset-0 flex justify-center items-center">
       <div className="bg-white w-1/2 h-1/3 fixed flex justify-center items-center rounded-md">
         <div
           className="absolute top-4 right-4 hover:opacity-70 cursor-pointer text-2xl"
