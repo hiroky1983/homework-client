@@ -43,3 +43,8 @@ export type CreateRoomResponseType = {
 export type GetChatRequestType = {
   roomId: string
 }
+
+export type CreateChatRequestType = {
+  roomId: string
+  message: string
+}

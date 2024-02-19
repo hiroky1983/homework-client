@@ -4,6 +4,7 @@ import type { SubmitHandler } from 'react-hook-form'
 import { useForm } from 'react-hook-form'
 import type { SetterOrUpdater } from 'recoil'
 import { Button } from './Button'
+import { useMutateChat } from '@/hooks/useMutateChat'
 import type { ChatType } from '@/types'
 
 type Props = {
@@ -14,13 +15,13 @@ type Props = {
 
 export const Footer: FC<Props> = (props) => {
   const { register, handleSubmit, reset } = useForm<ChatType>()
-
+  const { createChatMutaion } = useMutateChat((_) => _)
   const handleSubmitChat: SubmitHandler<ChatType> = async (data: ChatType) => {
     const req = {
       message: data.message,
       roomId: props.roomId,
     }
-
+    createChatMutaion.mutate(req)
     props.socketRef.current!.send(JSON.stringify(req))
     props.socketRef.current!.onmessage = (event) => {
       const res = JSON.parse(event.data)

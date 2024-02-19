@@ -23,7 +23,9 @@ export const ChatScreen: FC<Props> = (props) => {
 
   useEffect(() => {
     getCsrfToken()
-    const websocket = new WebSocket('ws://localhost:8080/chat/socket')
+    const websocket = new WebSocket(
+      `ws://localhost:8080/socket/${props.roomId}`
+    )
     if (!socketRef.current) {
       setIsConnected(!isConnected)
     }
