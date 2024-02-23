@@ -1,5 +1,6 @@
 'use client'
 import { useEffect } from 'react'
+import { Toast } from '@/components/toast/toast'
 import { useMutateAuth } from '@/hooks/useMutateAuth'
 
 export const TopScreen = () => {
@@ -46,6 +47,9 @@ export const TopScreen = () => {
         <li>フロントエンドテストの実装</li>
         <li></li>
       </ul>
+      <Toast status="success" />
+      <Toast status="warning" />
+      <Toast status="error" />
       <div className="hidden"></div>
     </div>
   )
