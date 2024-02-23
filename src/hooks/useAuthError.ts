@@ -34,8 +34,6 @@ export const useAuthError = () => {
     }
   }
   const AuthorizationErrorHandling = (msg: string) => {
-    console.log(msg)
-
     switch (msg) {
       case 'missing or malformed jwt':
         alert('ログインしていません')
