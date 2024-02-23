@@ -41,7 +41,7 @@ export const useAuthError = () => {
         break
       case 'user not found':
         alert('ユーザーが見つかりません。')
-        router.replace('/')
+        router.replace('/not-found')
         break
       case 'still user not signup verified':
         alert(
