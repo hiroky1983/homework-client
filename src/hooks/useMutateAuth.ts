@@ -2,12 +2,13 @@ import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 
 import { useRouter } from 'next/navigation'
-import { useError } from './useError'
+import { useAuthError } from './useAuthError'
 import type { CredentialType } from '@/types'
 
 export const useMutateAuth = () => {
   const router = useRouter()
-  const { switchErrorHandling } = useError()
+  const { authenticationErrorHandling, AuthorizationErrorHandling } =
+    useAuthError()
   const loginMutation = useMutation({
     mutationFn: async (user: CredentialType) =>
       await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/login`, user),
@@ -16,9 +17,9 @@ export const useMutateAuth = () => {
     },
     onError: (err: any) => {
       if (err.response.data.message) {
-        switchErrorHandling(err.response.data.message)
+        authenticationErrorHandling(err.response.data.message)
       } else {
-        switchErrorHandling(err.response.data)
+        authenticationErrorHandling(err.response.data)
       }
     },
   })
@@ -30,9 +31,9 @@ export const useMutateAuth = () => {
     },
     onError: (err: any) => {
       if (err.response.data.message) {
-        switchErrorHandling(err.response.data.message)
+        authenticationErrorHandling(err.response.data.message)
       } else {
-        switchErrorHandling(err.response.data)
+        authenticationErrorHandling(err.response.data)
       }
     },
   })
@@ -43,9 +44,9 @@ export const useMutateAuth = () => {
     },
     onError: (err: any) => {
       if (err.response.data.message) {
-        switchErrorHandling(err.response.data.message)
+        authenticationErrorHandling(err.response.data.message)
       } else {
-        switchErrorHandling(err.response.data)
+        authenticationErrorHandling(err.response.data)
       }
     },
   })
@@ -57,9 +58,20 @@ export const useMutateAuth = () => {
     },
     onError: (err: any) => {
       if (err.response.data.message) {
-        switchErrorHandling(err.response.data.message)
+        authenticationErrorHandling(err.response.data.message)
       } else {
-        switchErrorHandling(err.response.data)
+        authenticationErrorHandling(err.response.data)
+      }
+    },
+  })
+  const authorizationMutation = useMutation({
+    mutationFn: async () =>
+      await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/user/auth`),
+    onError: (err: any) => {
+      if (err.response.data.message) {
+        AuthorizationErrorHandling(err.response.data.message)
+      } else {
+        AuthorizationErrorHandling(err.response.data)
       }
     },
   })
@@ -68,5 +80,6 @@ export const useMutateAuth = () => {
     registerMutation,
     logoutMutation,
     googleLoginMutation,
+    authorizationMutation,
   }
 }

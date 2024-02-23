@@ -1,4 +1,13 @@
+'use client'
+import { useEffect } from 'react'
+import { useMutateAuth } from '@/hooks/useMutateAuth'
+
 export const TopScreen = () => {
+  const { authorizationMutation } = useMutateAuth()
+
+  useEffect(() => {
+    authorizationMutation.mutateAsync()
+  }, [])
   return (
     <div className="h-screen">
       <ul>
