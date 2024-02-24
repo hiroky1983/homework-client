@@ -1,5 +1,10 @@
 import { atom } from 'recoil'
-import type { ChatType, UserProfileType, UserType } from '@/types'
+import type {
+  ChatType,
+  ErrorMessageType,
+  UserProfileType,
+  UserType,
+} from '@/types'
 
 export const isLoginState = atom({
   key: 'isLogin',
@@ -34,4 +39,9 @@ export const userListState = atom<UserType[]>({
 export const isOpenState = atom({
   key: 'isOpen',
   default: false,
+})
+
+export const errorMessage = atom<ErrorMessageType>({
+  key: 'error',
+  default: { message: '' },
 })

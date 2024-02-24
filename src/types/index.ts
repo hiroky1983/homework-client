@@ -48,3 +48,7 @@ export type CreateChatRequestType = {
   roomId: string
   message: string
 }
+
+export type ErrorMessageType = {
+  message: string
+}

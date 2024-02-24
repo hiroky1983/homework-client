@@ -47,7 +47,7 @@ export const ProfileScreen: FC = () => {
             <label htmlFor="userName">ユーザー名</label>
             <div>
               <input
-                {...register('userName', { required: true })}
+                {...register('userName')}
                 className="input"
                 type="text"
                 name="userName"
@@ -58,7 +58,7 @@ export const ProfileScreen: FC = () => {
             <label htmlFor="profile">プロフィール</label>
             <div>
               <textarea
-                {...register('profile', { required: true })}
+                {...register('profile')}
                 name="profile"
                 className="input"
                 rows={5}

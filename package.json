@@ -12,6 +12,7 @@
     "test:ci": "jest --ci"
   },
   "dependencies": {
+    "@hookform/error-message": "^2.0.1",
     "@tanstack/react-query": "^5.17.9",
     "axios": "^1.6.5",
     "dayjs": "^1.11.10",

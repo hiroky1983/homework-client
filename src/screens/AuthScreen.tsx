@@ -1,4 +1,5 @@
 'use client'
+import { ErrorMessage } from '@hookform/error-message'
 import React, { type FC, useEffect } from 'react'
 import type { SubmitHandler } from 'react-hook-form'
 import { useForm } from 'react-hook-form'
@@ -11,7 +12,11 @@ import { isLoginState } from '@/store/state'
 import type { CredentialType } from '@/types'
 
 export const AuthScreen: FC = () => {
-  const { register, handleSubmit } = useForm<CredentialType>()
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<CredentialType>()
   const [isLogin, setIsLogin] = useRecoilState(isLoginState)
   const { loginMutation, registerMutation, googleLoginMutation } =
     useMutateAuth()
@@ -52,21 +57,31 @@ export const AuthScreen: FC = () => {
       >
         <div>
           <input
-            {...register('email', { required: true })}
+            {...register('email', { required: 'email is required' })}
             className="input"
             name="email"
             type="email"
             autoFocus
             placeholder="Email"
           />
+          <ErrorMessage
+            errors={errors}
+            name="email"
+            render={({ message }) => <p className="text-red-500">{message}</p>}
+          />
         </div>
         <div>
           <input
-            {...register('password', { required: true })}
+            {...register('password', { required: 'password is required' })}
             className="input"
             name="password"
             type="password"
             placeholder="Password"
+          />
+          <ErrorMessage
+            errors={errors}
+            name="password"
+            render={({ message }) => <p className="text-red-500">{message}</p>}
           />
         </div>
         <div className="flex justify-center my-2">

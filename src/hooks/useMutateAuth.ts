@@ -7,7 +7,7 @@ import type { CredentialType } from '@/types'
 
 export const useMutateAuth = () => {
   const router = useRouter()
-  const { authenticationErrorHandling, AuthorizationErrorHandling } =
+  const { authenticationErrorHandling, authorizationErrorHandling } =
     useAuthError()
   const loginMutation = useMutation({
     mutationFn: async (user: CredentialType) =>
@@ -69,9 +69,9 @@ export const useMutateAuth = () => {
       await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/user/auth`),
     onError: (err: any) => {
       if (err.response.data.message) {
-        AuthorizationErrorHandling(err.response.data.message)
+        authorizationErrorHandling(err.response.data.message)
       } else {
-        AuthorizationErrorHandling(err.response.data)
+        authorizationErrorHandling(err.response.data)
       }
     },
   })
