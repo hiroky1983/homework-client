@@ -1,10 +1,14 @@
 'use client'
 import { useEffect } from 'react'
+import { useRecoilState } from 'recoil'
+import { Button } from '@/components/Button'
 import { Toast } from '@/components/toast/toast'
 import { useMutateAuth } from '@/hooks/useMutateAuth'
+import { isShowToastState } from '@/store/state'
 
 export const TopScreen = () => {
   const { authorizationMutation } = useMutateAuth()
+  const [isShow, setIsShow] = useRecoilState(isShowToastState)
 
   useEffect(() => {
     authorizationMutation.mutateAsync()
@@ -47,9 +51,28 @@ export const TopScreen = () => {
         <li>フロントエンドテストの実装</li>
         <li></li>
       </ul>
-      <Toast status="success" />
-      <Toast status="warning" />
-      <Toast status="error" />
+      <Toast
+        show={isShow}
+        onClose={() => setIsShow(false)}
+        status="success"
+        message="OK"
+      />
+      <Toast
+        show={isShow}
+        onClose={() => setIsShow(false)}
+        status="warning"
+        message="警告"
+      />
+      <Toast
+        show={isShow}
+        onClose={() => setIsShow(false)}
+        status="error"
+        message="エラー"
+      />
+
+      <Button handleClick={() => setIsShow(true)}>OK</Button>
+      <Button handleClick={() => setIsShow(true)}>警告</Button>
+      <Button handleClick={() => setIsShow(true)}>エラー</Button>
       <div className="hidden"></div>
     </div>
   )

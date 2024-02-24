@@ -6,7 +6,7 @@ import { useRecoilState } from 'recoil'
 import { Modal } from './modal/Modal'
 import { DeleteChat } from './modal/chirdren/DeleteChat'
 import { useMutateChat } from '@/hooks/useMutateChat'
-import { chatState, isOpenState } from '@/store/state'
+import { chatState, isOpenModalState } from '@/store/state'
 import type { ChatType } from '@/types'
 
 type Props = {
@@ -16,7 +16,7 @@ type Props = {
 
 export const Chat: FC<Props> = (props) => {
   const [chats, setChats] = useRecoilState<ChatType[]>(chatState)
-  const [isOpne, setIsOpen] = useRecoilState(isOpenState)
+  const [isOpne, setIsOpen] = useRecoilState(isOpenModalState)
   const { getChatMutation, deleteChatMutation } = useMutateChat(setChats)
 
   useEffect(() => {

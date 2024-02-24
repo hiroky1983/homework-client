@@ -36,12 +36,17 @@ export const userListState = atom<UserType[]>({
   default: [],
 })
 
-export const isOpenState = atom({
-  key: 'isOpen',
+export const isOpenModalState = atom({
+  key: 'isOpenModal',
   default: false,
 })
 
 export const errorMessage = atom<ErrorMessageType>({
   key: 'error',
   default: { message: '' },
+})
+
+export const isShowToastState = atom({
+  key: 'isShowToast',
+  default: false,
 })
