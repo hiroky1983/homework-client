@@ -1,32 +1,33 @@
 import { useRouter } from 'next/navigation'
 import { useCookie } from './useSetCookie'
+import { useToast } from '@/provider/toastProvider'
 
 export const useAuthError = () => {
   const router = useRouter()
-
+  const { showToast } = useToast()
   const { getCsrfToken } = useCookie()
   const authenticationErrorHandling = (msg: string) => {
     switch (msg) {
       case 'invalid csrf token':
         getCsrfToken()
-        alert('CSRF token is invalid, please try again')
+        showToast('CSRF token is invalid, please try again', 'error')
         break
       case 'invalid or expired jwt':
-        alert('access token expired, please login')
+        showToast('access token expired, please login', 'error')
         router.push('/')
         break
       case 'missing or malformed jwt':
-        alert('access token is not valid, please login')
+        showToast('access token is not valid, please login', 'error')
         router.push('/')
         break
       case 'duplicated key not allowed':
-        alert('email already exist, please use another one')
+        showToast('email already exist, please use another one', 'error')
         break
       case 'crypto/bcrypt: hashedPassword is not the hash of the given password':
-        alert('password is not correct')
+        showToast('password is not correct', 'error')
         break
       case 'record not found':
-        alert('email is not correct')
+        showToast('email is not correct', 'error')
         break
       default:
         getCsrfToken()
@@ -36,25 +37,26 @@ export const useAuthError = () => {
   const authorizationErrorHandling = (msg: string) => {
     switch (msg) {
       case 'missing or malformed jwt':
-        alert('ログインしていません')
+        showToast('ログインしていません', 'error')
         router.replace('/')
         break
       case 'user not found':
-        alert('ユーザーが見つかりません。')
+        showToast('ユーザーが見つかりません。', 'error')
         router.replace('/not-found')
         break
       case 'still user not signup verified':
-        alert(
-          'ユーザー登録が完了していません。ユーザー登録を行ってサイドログインしてください。'
+        showToast(
+          'ユーザー登録が完了していません。ユーザー登録を行ってサイドログインしてください。',
+          'error'
         )
         router.replace('/')
         break
       case 'user is deleted':
-        alert('削除済みのユーザーの為アプリを利用できません。')
+        showToast('削除済みのユーザーの為アプリを利用できません。', 'error')
         router.replace('/')
         break
       default:
-        alert('エラーが発生しました。')
+        showToast('エラーが発生しました。', 'error')
     }
   }
   return {

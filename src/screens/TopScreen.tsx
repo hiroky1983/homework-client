@@ -39,10 +39,9 @@ export const TopScreen = () => {
         <br />
         <h2>フロントエンド</h2>
         <li>ブレイクポイント設定</li>
-        <li>プロフィール情報のrequireを外す</li>
-        <li>エラーハンドリングを修正</li>
         <li>csrf tokenのチェックすぐおかしくなる挙動修正</li>
-        <li>認証、認可周りの実装、リダイレクト処理</li>
+        <li>認可、Auth画面でヘッダーの選択を制限</li>
+        <li>toast周りリファクタリング</li>
         <li>UIをモダンできれいにする</li>
         <li>tailwind周りの修正、長い記述をcssに移動する</li>
         <li>tailwind周り、JITの導入</li>
@@ -54,24 +53,9 @@ export const TopScreen = () => {
       <Toast
         show={isShow}
         onClose={() => setIsShow(false)}
-        status="success"
-        message="OK"
-      />
-      <Toast
-        show={isShow}
-        onClose={() => setIsShow(false)}
-        status="warning"
-        message="警告"
-      />
-      <Toast
-        show={isShow}
-        onClose={() => setIsShow(false)}
         status="error"
         message="エラー"
       />
-
-      <Button handleClick={() => setIsShow(true)}>OK</Button>
-      <Button handleClick={() => setIsShow(true)}>警告</Button>
       <Button handleClick={() => setIsShow(true)}>エラー</Button>
       <div className="hidden"></div>
     </div>

@@ -35,9 +35,9 @@ export const Toast: FC<Props> = ({ status, message, show, onClose }) => {
     if (status === 'error') return error
     if (status === 'warning') return warning
   }
-  return show ? (
+  return shouldRender ? (
     <div
-      className={`flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800 ${
+      className={`fixed top-5 flex right-5 w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800 ${
         show ? 'animate-fadeIn' : 'animate-fadeOut'
       }`}
     >

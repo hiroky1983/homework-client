@@ -3,6 +3,7 @@ import './globals.css'
 
 import { Header } from '@/components/Header'
 import { AppProvider } from '@/provider/queryProvider'
+import { ToastProvider } from '@/provider/toastProvider'
 
 export const metadata: Metadata = {
   title: 'Homework App',
@@ -18,10 +19,12 @@ export default function RootLayout({
     <html lang="ja">
       <body>
         <AppProvider>
-          <div className="wrapper">
-            <Header />
-            <main>{children}</main>
-          </div>
+          <ToastProvider>
+            <div className="wrapper">
+              <Header />
+              <main>{children}</main>
+            </div>
+          </ToastProvider>
         </AppProvider>
       </body>
     </html>
