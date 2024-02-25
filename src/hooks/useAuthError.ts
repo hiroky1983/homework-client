@@ -31,7 +31,7 @@ export const useAuthError = () => {
         break
       default:
         getCsrfToken()
-        alert(msg)
+        showToast(msg, 'error')
     }
   }
   const authorizationErrorHandling = (msg: string) => {
