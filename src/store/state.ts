@@ -3,6 +3,7 @@ import type {
   ChatType,
   ErrorMessageType,
   UserProfileType,
+  UserStatusType,
   UserType,
 } from '@/types'
 
@@ -49,4 +50,14 @@ export const errorMessage = atom<ErrorMessageType>({
 export const isShowToastState = atom({
   key: 'isShowToast',
   default: false,
+})
+
+export const userStatusState = atom<UserStatusType>({
+  key: 'userStatus',
+  default: {
+    isDeleted: false,
+    isLogin: false,
+    isExpired: false,
+    isVerified: false,
+  },
 })

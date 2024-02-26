@@ -52,3 +52,10 @@ export type CreateChatRequestType = {
 export type ErrorMessageType = {
   message: string
 }
+
+export type UserStatusType = {
+  isDeleted: boolean
+  isExpired: boolean
+  isLogin: boolean
+  isVerified: boolean
+}
