@@ -15,6 +15,7 @@ export const ChatListScreen: FC = () => {
   const { getUsersMutation } = useMutateUser()
   const { createRoomMutarion } = useMutateRoom()
   const [users, setUsers] = useRecoilState<UserType[]>(userListState)
+  console.log(users)
 
   useEffect(() => {
     getUsersMutation.mutateAsync().then((res) => {
@@ -39,7 +40,12 @@ export const ChatListScreen: FC = () => {
             >
               <Link href={`/chat/${user.roomId}`}>
                 <div className="flex items-center gap-2">
-                  <Image src="/icon.png" alt="icon" width={40} height={40} />
+                  <Image
+                    src={user?.imagePath ? user?.imagePath : '/icon.png'}
+                    alt="icon"
+                    width={40}
+                    height={40}
+                  />
                   <p className="text-xl">{user.userName}</p>
                 </div>
               </Link>

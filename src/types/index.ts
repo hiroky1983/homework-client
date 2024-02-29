@@ -31,6 +31,7 @@ export type UserType = {
   userName: string
   email: string
   roomId: string
+  imagePath: string
 }
 
 export type CreateRoomRequestType = {
