@@ -4,7 +4,7 @@ import { useRecoilState } from 'recoil'
 import { Button } from '@/components/Button'
 import { Toast } from '@/components/toast/toast'
 import { useMutateAuth } from '@/hooks/useMutateAuth'
-import { isShowToastState, userStatusState } from '@/store/state'
+import { isShowToastState } from '@/store/state'
 
 export const TopScreen = () => {
   const { authorizationMutation } = useMutateAuth()

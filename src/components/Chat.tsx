@@ -1,7 +1,7 @@
 'use client'
 import dayjs from 'dayjs'
 import Image from 'next/image'
-import { useRouter, useSearchParams } from 'next/navigation'
+import { useSearchParams } from 'next/navigation'
 import { type FC, useEffect } from 'react'
 import { useRecoilState } from 'recoil'
 import { Modal } from './modal/Modal'
