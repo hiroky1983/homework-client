@@ -33,6 +33,7 @@ export const useMutateUserProfile = (
         userName: data.userName,
         email: data.email,
         profile: data.profile,
+        imagePath: data.imagePath,
       })
     },
   })

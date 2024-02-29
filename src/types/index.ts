@@ -23,6 +23,7 @@ export type UserProfileType = {
   userName: string
   email: string
   profile: string
+  imagePath: string
 }
 
 export type UserType = {

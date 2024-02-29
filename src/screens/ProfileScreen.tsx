@@ -13,6 +13,7 @@ import type { UpdateUserProfileType, UserProfileType } from '@/types'
 export const ProfileScreen: FC = () => {
   const { handleSubmit, register, setValue } = useForm<UpdateUserProfileType>()
   const [profile, setProfile] = useRecoilState<UserProfileType>(profileState)
+
   const { updateProfileMutarion, getProfileMutation } = useMutateUserProfile(
     setProfile,
     setValue
@@ -37,7 +38,12 @@ export const ProfileScreen: FC = () => {
       <form onSubmit={handleSubmit(submitUpdateProfileHandler)}>
         <ul className="flex flex-col gap-4">
           <li>
-            <Image src="/icon.png" alt="icon" width={100} height={100} />
+            <Image
+              src={profile?.imagePath ? profile?.imagePath : '/icon.png'}
+              alt="icon"
+              width={100}
+              height={100}
+            />
           </li>
           <li>
             <label htmlFor="email">メールアドレス</label>
