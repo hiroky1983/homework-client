@@ -15,7 +15,6 @@ export const ChatListScreen: FC = () => {
   const { getUsersMutation } = useMutateUser()
   const { createRoomMutarion } = useMutateRoom()
   const [users, setUsers] = useRecoilState<UserType[]>(userListState)
-  console.log(users)
 
   useEffect(() => {
     getUsersMutation.mutateAsync().then((res) => {
@@ -38,10 +37,15 @@ export const ChatListScreen: FC = () => {
               key={user.id}
               className="flex justify-between gap-2 border-b-2 py-2"
             >
-              <Link href={`/chat/${user.roomId}`}>
+              <Link
+                href={{
+                  pathname: `/chat/${user.roomId}`,
+                  query: { imagePath: user.imagePath },
+                }}
+              >
                 <div className="flex items-center gap-2">
                   <Image
-                    src={user?.imagePath ? user?.imagePath : '/icon.png'}
+                    src={user.imagePath ? user.imagePath : '/icon.png'}
                     alt="icon"
                     width={40}
                     height={40}
@@ -50,7 +54,12 @@ export const ChatListScreen: FC = () => {
                 </div>
               </Link>
               {user.roomId ? (
-                <Link href={`/chat/${user.roomId}`}>
+                <Link
+                  href={{
+                    pathname: `/chat/${user.roomId}`,
+                    query: { imagePath: user.imagePath },
+                  }}
+                >
                   <FaChevronRight />
                 </Link>
               ) : (

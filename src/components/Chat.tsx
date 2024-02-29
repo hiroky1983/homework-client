@@ -1,6 +1,7 @@
 'use client'
 import dayjs from 'dayjs'
 import Image from 'next/image'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { type FC, useEffect } from 'react'
 import { useRecoilState } from 'recoil'
 import { Modal } from './modal/Modal'
@@ -18,6 +19,8 @@ export const Chat: FC<Props> = (props) => {
   const [chats, setChats] = useRecoilState<ChatType[]>(chatState)
   const [isOpne, setIsOpen] = useRecoilState(isOpenModalState)
   const { getChatMutation, deleteChatMutation } = useMutateChat(setChats)
+  const searchParams = useSearchParams()
+  const imagePath = searchParams.get('imagePath')
 
   useEffect(() => {
     getChatMutation.mutateAsync({ roomId: props.roomId })
@@ -58,7 +61,12 @@ export const Chat: FC<Props> = (props) => {
               }
             >
               {chat.sender === 'other' && (
-                <Image src="/icon.png" alt="icon" width={40} height={5} />
+                <Image
+                  src={imagePath ? imagePath : '/icon.png'}
+                  alt="icon"
+                  width={40}
+                  height={5}
+                />
               )}
               <div className={chat?.sender === 'me' ? 'chat-me' : 'chat-other'}>
                 {chat?.message}
