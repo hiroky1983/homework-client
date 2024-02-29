@@ -1,15 +1,10 @@
-import { useMutation } from '@tanstack/react-query'
+import { useMutation, useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 
 import { useRouter } from 'next/navigation'
-import type { Dispatch, SetStateAction } from 'react'
-import type { UseFormSetValue } from 'react-hook-form'
-import type { UpdateUserProfileType, UserProfileType } from '@/types'
+import type { UpdateUserProfileType } from '@/types'
 
-export const useMutateUserProfile = (
-  setState: Dispatch<SetStateAction<UserProfileType>>,
-  setValue: UseFormSetValue<UpdateUserProfileType>
-) => {
+export const useMutateUserProfile = () => {
   const router = useRouter()
   const updateProfileMutarion = useMutation({
     mutationFn: async (user: UpdateUserProfileType) =>
@@ -21,24 +16,7 @@ export const useMutateUserProfile = (
       router.push('/top')
     },
   })
-
-  const getProfileMutation = useMutation({
-    mutationFn: async () =>
-      (await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/user/get_profile`))
-        .data,
-    onSuccess: (data: UserProfileType) => {
-      setValue('userName', data.userName)
-      setValue('profile', data.profile)
-      setState({
-        userName: data.userName,
-        email: data.email,
-        profile: data.profile,
-        imagePath: data.imagePath,
-      })
-    },
-  })
   return {
     updateProfileMutarion,
-    getProfileMutation,
   }
 }

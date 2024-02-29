@@ -7,6 +7,7 @@ import { useRecoilState } from 'recoil'
 
 import { Button } from '@/components/Button'
 import { useMutateUserProfile } from '@/hooks/useUserProfile'
+import { useUserProfileQuery } from '@/hooks/useUserProfileQuery'
 import { profileState } from '@/store/state'
 import type { UpdateUserProfileType, UserProfileType } from '@/types'
 
@@ -14,10 +15,8 @@ export const ProfileScreen: FC = () => {
   const { handleSubmit, register, setValue } = useForm<UpdateUserProfileType>()
   const [profile, setProfile] = useRecoilState<UserProfileType>(profileState)
 
-  const { updateProfileMutarion, getProfileMutation } = useMutateUserProfile(
-    setProfile,
-    setValue
-  )
+  const { updateProfileMutarion } = useMutateUserProfile()
+  const { data } = useUserProfileQuery()
 
   const submitUpdateProfileHandler: SubmitHandler<
     UpdateUserProfileType
@@ -29,8 +28,10 @@ export const ProfileScreen: FC = () => {
   }
 
   useEffect(() => {
-    getProfileMutation.mutateAsync()
-  }, [])
+    setValue('userName', data?.userName!)
+    setValue('profile', data?.profile!)
+    setProfile(data!)
+  }, [data])
 
   return (
     <div className="flex flex-col justify-center items-center min-h-screen font-mono">
