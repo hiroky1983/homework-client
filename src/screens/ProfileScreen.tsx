@@ -1,4 +1,5 @@
 'use client'
+import { useQueryClient } from '@tanstack/react-query'
 import Image from 'next/image'
 import { useEffect, type FC } from 'react'
 import type { SubmitHandler } from 'react-hook-form'
@@ -14,6 +15,7 @@ import type { UpdateUserProfileType, UserProfileType } from '@/types'
 export const ProfileScreen: FC = () => {
   const { handleSubmit, register, setValue } = useForm<UpdateUserProfileType>()
   const [profile, setProfile] = useRecoilState<UserProfileType>(profileState)
+  const client = useQueryClient()
 
   const { updateProfileMutarion } = useMutateUserProfile()
   const { data } = useUserProfileQuery()
@@ -25,6 +27,7 @@ export const ProfileScreen: FC = () => {
       userName: data.userName,
       profile: data.profile,
     })
+    client.invalidateQueries({ queryKey: ['profile'] })
   }
 
   useEffect(() => {
