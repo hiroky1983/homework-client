@@ -1,7 +1,6 @@
-import { useMutation, useQuery } from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
-import type { Dispatch, SetStateAction } from 'react'
-import type { ChatType, DeleteChatType } from '@/types'
+import type { ChatType } from '@/types'
 
 const getChatQuery = async () => {
   const { data } = await axios.get<ChatType[]>(
