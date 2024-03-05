@@ -22,7 +22,6 @@ export const TopScreen = () => {
         <li>各リクエストとレスポンスをmodelで定義してきれいにする</li>
         <li>tokenチェックのAPIを作成する</li>
         <li>各テストの記述</li>
-        <li>CI／CDテスト</li>
         <li>
           intercepterのmiddleware実装をどうするか検討（要らなければディレクトリの記述を消す）
         </li>
