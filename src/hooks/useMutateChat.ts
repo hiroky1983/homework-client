@@ -19,8 +19,12 @@ export const useMutateChat = (setState: SetterOrUpdater<ChatType[]>) => {
     },
   })
   const createChatMutaion = useMutation({
-    mutationFn: async (data: CreateChatRequestType) =>
-      await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/chat/create`, data),
+    mutationFn: async (data: CreateChatRequestType) => {
+      return await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}/chat/create`,
+        data
+      )
+    },
   })
   const deleteChatMutation = useMutation({
     mutationFn: async (chatId: DeleteChatType) =>

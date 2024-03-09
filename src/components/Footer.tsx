@@ -21,8 +21,16 @@ export const Footer: FC<Props> = (props) => {
       message: data.message,
       roomId: props.roomId,
     }
-    createChatMutaion.mutate(req)
-    props.socketRef.current!.send(JSON.stringify(req))
+    const res = await createChatMutaion.mutateAsync(req)
+    const wsReq = {
+      id: res.data.id,
+      message: res.data.message,
+      roomId: props.roomId,
+      userId: res.data.userId,
+    }
+    console.log(wsReq)
+
+    props.socketRef.current!.send(JSON.stringify(wsReq))
     props.socketRef.current!.onmessage = (event) => {
       const res = JSON.parse(event.data)
       props.setState(res)
