@@ -29,6 +29,20 @@ export default function RootLayout({
             })(window,document,'script','dataLayer','GTM-TJVPMZP5');`,
         }}
       />
+      <Script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=G-0ME9JYQXD0"
+      />
+      <Script
+        id="gtag-script"
+        dangerouslySetInnerHTML={{
+          __html: `  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-0ME9JYQXD0');`,
+        }}
+      />
       <body>
         <noscript>
           <iframe
