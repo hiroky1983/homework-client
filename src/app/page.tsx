@@ -11,6 +11,7 @@ declare let window: Window
 export default function Home() {
   useEffect(() => {
     window.dataLayer.push({ user_id: 'asdfasdfasdfasdf1234213412341234' })
+    console.log('dataLayer', window.dataLayer)
   }, [])
   return (
     <>
