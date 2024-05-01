@@ -32,7 +32,7 @@ export default function Home() {
     console.log('userId', userId)
     console.log('customerId', customerId)
     console.log('dataLayer', window.dataLayer)
-  }, [])
+  }, [customerId, userId])
   return (
     <>
       <AuthScreen />
