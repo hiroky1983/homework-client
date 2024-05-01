@@ -26,9 +26,7 @@ export default function Home() {
       user_id: userId,
       customer_id: customerId,
     })
-    window.dataLayer.push({
-      event: 'page_view',
-    })
+
     console.log('userId', userId)
     console.log('customerId', customerId)
     console.log('dataLayer', window.dataLayer)
@@ -40,6 +38,9 @@ export default function Home() {
         handleClick={() => {
           setUserId(rand1())
           setCustomerId(rand2())
+          window.dataLayer.push({
+            event: 'page_view',
+          })
         }}
       >
         ろぐいん
