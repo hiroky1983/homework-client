@@ -32,7 +32,7 @@ export const ChatListScreen: FC = () => {
     <div className="h-screen">
       <Suspense fallback={<Loading />}>
         <ul className="flex justify-between flex-col gap-6">
-          {users.map((user) => (
+          {users?.map((user) => (
             <li
               key={user.id}
               className="flex justify-between gap-2 border-b-2 py-2"
